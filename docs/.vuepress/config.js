@@ -1,4 +1,4 @@
 module.exports = {
-    base: ‘/pandora3/’
+    base: '/pandora3/'
     // ...
 };
