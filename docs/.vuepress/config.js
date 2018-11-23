@@ -1,4 +1,4 @@
 module.exports = {
-    base: ‘NesCafe62/pandora3’
+    base: ‘/pandora3/’
     // ...
 };
