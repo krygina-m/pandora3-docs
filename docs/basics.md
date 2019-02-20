@@ -87,7 +87,7 @@ class HomeController extends Controller {
 
 По умолчанию представления находятся в каталоге `app/Views`. Пример представления `Home.php`:
 
-```
+```html
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -102,7 +102,7 @@ class HomeController extends Controller {
 
 Очень часто в макетах есть общая часть, присутствующая на всех страницах (шапка, боковые меню, подвал и т.д.). Поэтому удобнее вынести их в отдельный файл `app/Views/Layout/Main.php`
 
-```
+```php-extras
 <!DOCTYPE html>
 <html lang="ru">
 	<head>
@@ -120,7 +120,7 @@ class HomeController extends Controller {
 
 А в обычных представлениях останется только уникальная часть.
 
-```
+```html
 <h1>Hello, world</h1>
 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 ```
