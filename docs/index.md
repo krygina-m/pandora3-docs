@@ -4,7 +4,7 @@ lang: ru-RU
 home: true
 heroImage: https://s3.eu-central-1.amazonaws.com/logaretm/vee-validate.svg
 actionText: Get Started →
-actionLink: ./getting-started/
+actionLink: ./getting-started.html
 features:
 - title: Simple
   details: ...
