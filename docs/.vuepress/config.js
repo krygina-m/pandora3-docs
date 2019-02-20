@@ -6,7 +6,7 @@ module.exports = {
             {text: 'Основы',            link: '/basics.html'}
         ],
         sidebar: [
-            '/getting-starged',
+            '/getting-started',
             '/basics'
         ]
         /* nav: [{
