@@ -99,7 +99,7 @@ class HomeController extends Controller {
 
 ### Макеты
 
-Очень часто в макетах есть общая часть, присутствующая на всех страницах (шапка, боковые меню, подвал и т.д.). Поэтому удобнее вынести их в отдельный файл `app/Views/Layout/Main.php`
+Как правило в макете есть блоки, присутствующие на всех страницах (шапка, боковые меню, подвал и т.д.). Поэтому удобнее вынести их в отдельный файл `app/Views/Layout/Main.php`:
 
 ```php-extras
 <!DOCTYPE html>
@@ -114,11 +114,17 @@ class HomeController extends Controller {
 </html>
 ```
 
-А в обычных представлениях останется только уникальная часть.
+В остальных представлениях теперь достаточно оставить только уникальную часть:
 
 ```html
 <h1>Hello, world</h1>
 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+```
+
+Можно создать и другие макеты (например для печати), и указать для использования в методе контроллера.
+
+```php
+$this->setLayout('Print');
 ```
 
 Поздравляем вы написали свое первое приложение. 
