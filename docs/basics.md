@@ -89,9 +89,8 @@ class HomeController extends Controller {
 
 ```html
 <!DOCTYPE html>
-<html lang="ru">
-	<head>
-	</head>
+<html>
+	<head></head>
 	<body>
 		<h1>Hello, world</h1>
 	</body>
@@ -104,15 +103,12 @@ class HomeController extends Controller {
 
 ```php-extras
 <!DOCTYPE html>
-<html lang="ru">
-	<head>
-	</head>
+<html>
+	<head></head>
 	<body>
 		<header>Header</header>
 		<nav>Navigation</nav>
-		<main>
-			<?= $content ?>
-		</main>
+		<main><?= $content ?></main>
 		<footer>Footer</footer>		
 	</body>
 </html>
