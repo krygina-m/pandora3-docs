@@ -101,7 +101,7 @@ class HomeController extends Controller {
 
 Как правило в макете есть блоки, присутствующие на всех страницах (шапка, боковые меню, подвал и т.д.). Поэтому удобнее вынести их в отдельный файл `app/Views/Layout/Main.php`:
 
-```php-extras
+```html
 <!DOCTYPE html>
 <html>
 	<head></head>
