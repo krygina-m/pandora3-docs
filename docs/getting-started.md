@@ -24,6 +24,9 @@
   ├── Widget
 ```
 
+Класс `Application` 
+
+![ рисунок]( C:\Users\Sergey62\floobits\share\Sergey62\new-edu\diagApplication.jpg )
 
 ### Libs
 
