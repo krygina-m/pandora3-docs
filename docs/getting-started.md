@@ -24,9 +24,8 @@
   ├── Widget
 ```
 
-Класс `Application` 
+Класс `Application` содержит следующие файлы `Application.php`, `BaseApplication.php` , `ApplicationException.php`
 
-![ рисунок]( C:\Users\Sergey62\floobits\share\Sergey62\new-edu\diagApplication.jpg )
 
 ### Libs
 
