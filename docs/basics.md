@@ -4,7 +4,7 @@
 
 ### Точка входа
 
-Точкой входа для приложения будет служить файл `public/index.php`:
+Точкой входа в приложение будет служить файл `public/index.php`:
 
 ```php
 <?php
@@ -22,7 +22,7 @@ $mode = 'Dev';
 
 ### Класс приложения
 
-Создадим файл `app/App.php` следующего содержания:
+Класс приложения позволяет управлять настройками и зависимостями а также служит точкой входа для маршрутизации. Создадим файл `app/App.php` следующего содержания:
 
 ```php
 <?php
@@ -31,19 +31,39 @@ namespace app;
 use Pandora3\Core\Application\Application;
 
 class App extends Application {
-
-	protected function getRoutes(): array {
-		return include("{$this->path}/routes.php");
-	}
 	
 }
 ```
 
-Класс `App` позволяет настроить общие свойства приложения и его поведение. Вместо `app` в качестве пространства имен и `App` в качестве имени класса можно выбрать другие названия. Также при создании класса приложения для него создается контейнер зависимостей, которые будут доступны другим классам. [Подробнее о контейнере].
+:::
+Вместо `app\App` в качестве имени класса и пространства имен можно использовать и другие идентификаторы, главное чтобы им соответствовали названия файла и каталога. Не забудьте также изменить значения в `public/index.php`
+:::
+
+### Контейнер зависимостей
+
+При инициализации класс приложения создает контейнер зависимостей `$this->container`. Переопределив метод `dependencies` в классе приложения можно добавлять и переопределять зависимости.
+
+```php
+	protected function dependencies(Container $container): void {
+		parent::dependencies($container);
+		$container->setShared(DatabaseConnectionInterface::class, EloquentConnection::class);
+	}
+```
+
+:::
+Если требуется отключить стандартные зависимости, необходимо убрать вызов `parent::dependencies`
+:::
+
+### Стандартные зависимости
+
+При наследовании класса приложения от `Pandora3\Core\Application\Application`, он получит следующие зависимости:
+* `Request` реализующий `RequestInterface`
+* `Router` реализующий `RouterInterface`
+* `DatabaseConnection` реализующий `DatabaseConnectionInterface`
 
 ## Маршрутизация
 
-В файле `app/routes.php` опишем маршруты:
+В файле `app/routes.php` опишем необходимые маршруты:
 
 ```php
 <?php
@@ -54,11 +74,16 @@ return [
 ];
 ```
 
-Как видно в качестве ключей указываем url адреса, а значениями могут быть имена классов или функции-замыкания. При указании адреса можно использовать * для обозначения вложенных адресов.
+В качестве ключей укажем маршруты, а в качестве значений имена классов контроллеров. При указании адреса можно использовать `*` для обозначения произвольных частей адреса. В качестве значения вместо класса контроллера можно указать любой класс который поддерживает интерфейс `RouteInterface` или функцию-замыкание.
+
+:::
+Если не указывать `*` на конце маршрута, он будет срабатывать полько при строгом соответствии. Но при этом будет невозможно использовать вложенную маршрутизацию
+:::
+
 
 ## Контроллеры
 
-Создание контроллера `app/Controllers/HomeController.php` выглядит следующим образом:
+Создание контроллера `app/Controllers/BookController.php` выглядит следующим образом:
 
 ```php
 <?php
@@ -66,22 +91,27 @@ namespace app\Controllers;
 
 use Pandora3\Core\Controller\Controller;
 
-class HomeController extends Controller {
+class BookController extends Controller {
 	
 	public function getRoutes(): array {
 		return [
-			'/' => 'home'
+			'/' => 'books',
+			'/add' => 'add'
 		];
 	}
 	
-	protected function home() {
-		return $this->render('Home');
+	protected function books() {
+		return $this->render('Books');
+	}
+	
+	protected function add() {
+		return $this->render('Form');
 	}
 	
 }
 ```
 
-Остальные контроллеры можно создать точно так же.
+Метод `getRoutes` возвращает маршруты в виде массива, где в качестве значений указаны имена методов. Аналогичным образом создадим и другие контроллеры.
 
 ## Представления
 
@@ -121,13 +151,17 @@ class HomeController extends Controller {
 <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
 ```
 
-Можно создать и другие макеты (например для печати), и указать для использования в методе контроллера.
+Можно создать и другие макеты (например для печати), и применить один из них перед вызовом метода `render` в контроллере.
 
 ```php
-$this->setLayout('Print');
+	protected function articlePrint() {
+		// ...
+		$this->setLayout('Print');
+		return $this->render('Article');
+	}
 ```
 
-Поздравляем вы написали свое первое приложение. 
+В результате получилось минимальное веб-приложение. Пора проверить его работоспособность в браузере!
 
 ## Модели
 
