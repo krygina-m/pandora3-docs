@@ -10,23 +10,23 @@
 <?php
 
 $loader = require __DIR__ .'/../vendor/autoload.php';
-$loader->setPsr4('app\\', __DIR__.'/../app');
+$loader->setPsr4('App\\', __DIR__.'/../app');
 
-$mode = 'Dev';
-(new app\App())->run($mode);
+$mode = 'dev';
+(new App\App())->run($mode);
 ```
 
 ### Режим запуска
  
-Переменная `$mode` отвечает за режим запуска приложения. В режиме `Dev` включена отладка и отображаются подробные сообщения об ошибках. Не забудьте изменить режим на `Prod` при развертывании на production сервере.
+Переменная `$mode` отвечает за режим запуска приложения. В режиме `dev` включена отладка и отображаются подробные сообщения об ошибках. Не забудьте изменить режим на `prod` при развертывании на production сервере.
 
 ### Класс приложения
 
-Класс приложения позволяет управлять настройками и зависимостями а также служит точкой входа для маршрутизации. Создадим файл `app/App.php` следующего содержания:
+Класс приложения позволяет управлять настройками и зависимостями а также служит точкой входа для маршрутизации. Создадим файл `App/App.php` следующего содержания:
 
 ```php
 <?php
-namespace app;
+namespace App;
 
 use Pandora3\Core\Application\Application;
 
@@ -69,8 +69,8 @@ class App extends Application {
 <?php
 
 return [
-	'/*' => \app\Controllers\HomeController::class,
-	'/books/*' => \app\Controllers\BooksController::class
+	'/*' => \App\Controllers\HomeController::class,
+	'/books/*' => \App\Controllers\BooksController::class
 ];
 ```
 
@@ -83,11 +83,11 @@ return [
 
 ## Контроллеры
 
-Создание контроллера `app/Controllers/BookController.php` выглядит следующим образом:
+Создание контроллера `App/Controllers/BookController.php` выглядит следующим образом:
 
 ```php
 <?php
-namespace app\Controllers;
+namespace App\Controllers;
 
 use Pandora3\Core\Controller\Controller;
 
