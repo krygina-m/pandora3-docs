@@ -2,12 +2,14 @@ module.exports = {
     base: '/pandora3/',
     themeConfig: {
         nav: [
-            {text: 'Быстрый старт',     link: '/getting-starged.html'},
-            {text: 'Основы',            link: '/basics.html'}
+            {text: 'Быстрый старт',     link: '/getting-started.html'},
+            {text: 'Основы',            link: '/basics.html'},
+            {text: 'Концепция',         link: '/concept.html'}
         ],
         sidebar: [
             '/getting-started',
-            '/basics'
+            '/basics',
+            '/concept'
         ]
         /* nav: [{
             text: 'Быстрый старт',
