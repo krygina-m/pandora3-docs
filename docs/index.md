@@ -3,7 +3,7 @@ title: Pandora 3
 lang: ru-RU
 home: true
 heroText: Pandora 3
-heroImage: https://s3.eu-central-1.amazonaws.com/logaretm/vee-validate.svg
+heroImage: /logo-big.png
 actionText: Get Started →
 actionLink: ./getting-started.html
 features:
