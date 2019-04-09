@@ -2,7 +2,7 @@
 title: Pandora 3
 lang: ru-RU
 home: true
-heroImage: /logo-big.png
+heroImage: /title-logo.png
 actionText: Get Started →
 actionLink: ./getting-started.html
 features:
