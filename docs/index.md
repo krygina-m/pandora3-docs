@@ -12,7 +12,7 @@ features:
   details: ...
 - title: Configurable
   details: ...
-footer: Copyright © 2018
+footer: Copyright © 2019
 description: Легковесный PHP Framework
 meta:
   - name: og:title
