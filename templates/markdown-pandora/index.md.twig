@@ -3,7 +3,7 @@
 {% for package in project.indexes.packages|sort_asc %}
 {% set packageHeader = false %}
 {% for class in package.classes|sort_asc %}
-{% if not class.abstract %}
+{# if not class.abstract #}
 {% if not packageHeader %}
 {% set packageHeader = true %}
 
@@ -11,7 +11,7 @@
 
 {% endif %}
 {% include 'class.md.twig' %}
-{% endif %}
+{# endif #}
 {% endfor %}
 {% endfor %}
 
