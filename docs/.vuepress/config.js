@@ -7,6 +7,7 @@ module.exports = {
             {text: 'API',               link: '/api/'},
             {text: 'Концепция',         link: '/concept.html'}
         ],
+        sidebarDepth: 2,
         sidebar: [
             '/getting-started',
             '/basics',
