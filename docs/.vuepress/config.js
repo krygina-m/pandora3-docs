@@ -10,7 +10,7 @@ module.exports = {
         sidebar: [
             '/getting-started',
             '/basics',
-            '/api/',
+            ['/api/', 'API'],
             '/concept'
         ]
         /* nav: [{
