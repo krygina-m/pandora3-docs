@@ -15,7 +15,8 @@ addons:
             - g++-4.8
 install:
     - npm install -g vuepress
-    - composer require nelson6e65/phpdoc-vuepress dev-master
+    - composer require phpdocumentor/phpdocumentor
+    - composer require nelson6e65/phpdoc-vuepress:dev-master
 before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
