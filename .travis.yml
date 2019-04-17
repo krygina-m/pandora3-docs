@@ -21,7 +21,7 @@ before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
 script:
-    - php vendor/bin/phpdoc -d="src/" -t="docs/api/" --template="vendor/nelson6e65/phpdoc-vuepress/data/templates/vuepress"
+    - php vendor/bin/phpdoc -d src -t docs/api --template="vendor/nelson6e65/phpdoc-vuepress/data/templates/vuepress"
     - npm run docs:build
 cache:
     directories:
