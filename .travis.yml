@@ -14,12 +14,14 @@ addons:
 install:
     - npm install -g vuepress
     - composer require phpdocumentor/phpdocumentor
-    - composer require nelson6e65/phpdoc-vuepress:dev-master
+    # - composer require nelson6e65/phpdoc-vuepress:dev-master
+    - composer require cvuorinen/phpdoc-markdown-public
 before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone --recurse-submodules https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
 script:
-    - php vendor/bin/phpdoc -d src -t docs/api --template="vendor/nelson6e65/phpdoc-vuepress/data/templates/vuepress"
+    # - php vendor/bin/phpdoc -d src -t docs/api --template="vendor/nelson6e65/phpdoc-vuepress/data/templates/vuepress"
+    - php vendor/bin/phpdoc -d src -t docs/api --template="vendor/cvuorinen/phpdoc-markdown-public/data/templates/markdown-public"
     - npm run docs:build
 cache:
     directories:
