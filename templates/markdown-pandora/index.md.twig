@@ -7,7 +7,7 @@
 {% if not packageHeader %}
 {% set packageHeader = true %}
 
-## {{ package.name|replace({"Pandora3\\": ""}) }}
+## {{ class.namespace|replace({"Pandora3\\": ""}) }}
 
 {% endif %}
 {% include 'class.md.twig' %}
