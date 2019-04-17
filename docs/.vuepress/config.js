@@ -4,7 +4,7 @@ module.exports = {
         nav: [
             {text: 'Быстрый старт',     link: '/getting-started.html'},
             {text: 'Основы',            link: '/basics.html'},
-            {text: 'API',               link: '/api'},
+            {text: 'API',               link: '/api/'},
             {text: 'Концепция',         link: '/concept.html'}
         ],
         sidebar: [
