@@ -4,22 +4,13 @@ module.exports = {
         nav: [
             {text: 'Быстрый старт',     link: '/getting-started.html'},
             {text: 'Основы',            link: '/basics.html'},
-            {text: 'API',               link: '/api/classes.html'},
+            {text: 'API',               link: '/api.html'},
             {text: 'Концепция',         link: '/concept.html'}
         ],
         sidebar: [
             '/getting-started',
             '/basics',
-            {
-                title: 'API',
-                children: [
-                    '/api/classes.html',
-                    '/api/interfaces.html',
-                    '/api/constants.html',
-                    '/api/functions.html',
-                    '/api/traits.html'
-                ]
-            },
+            '/api',
             '/concept'
         ]
         /* nav: [{
