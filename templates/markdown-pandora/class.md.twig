@@ -5,7 +5,7 @@
 {{ class.description|raw }}
 
 * Full name: {{ class.FullyQualifiedStructuralElementName }}
-{% if class.parent %}* Parent class: {{ class.parent.FullyQualifiedStructuralElementName }}
+{% if class.parent %}* Parent: {{ class.parent }}
 {% endif %}
 {% if class.interfaces is not empty %}* This class implements: {{ class.interfaces|join(', ')|raw }}
 {% endif %}
