@@ -2,7 +2,29 @@
 
 {% for package in project.indexes.packages|sort_asc %}
 {% set packageHeader = false %}
+{% for class in package.interfaces|sort_asc %}
+{# if not class.abstract #}
+{% if not packageHeader %}
+{% set packageHeader = true %}
+
+## {{ class.namespace|replace({"\\Pandora3\\": ""}) }}
+
+{% endif %}
+{% include 'class.md.twig' %}
+{# endif #}
+{% endfor %}
 {% for class in package.classes|sort_asc %}
+{# if not class.abstract #}
+{% if not packageHeader %}
+{% set packageHeader = true %}
+
+## {{ class.namespace|replace({"\\Pandora3\\": ""}) }}
+
+{% endif %}
+{% include 'class.md.twig' %}
+{# endif #}
+{% endfor %}
+{% for class in package.traits|sort_asc %}
 {# if not class.abstract #}
 {% if not packageHeader %}
 {% set packageHeader = true %}
