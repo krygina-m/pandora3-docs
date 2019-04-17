@@ -10,6 +10,7 @@ jobs:
         - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
         - git clone https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
       script:
+        - composer global config minimum-stability dev
         - composer require --dev nelson6e65/phpdoc-vuepress
 
     - stage: deploy
