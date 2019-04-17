@@ -1,31 +1,56 @@
-language: node_js
-node_js:
-    - "10"
-env:
-    - CXX=g++-4.8
+stages:
+    - prepare
+    - deploy
 
-addons:
-    apt:
-        sources:
-            - ubuntu-toolchain-r-test
-        packages:
-            - g++-4.8
-install:
-    - npm install -g vuepress
-script:
-    - npm run docs:build
-cache:
-    directories:
-        - "node_modules"
+jobs:
+    include:
+        - stage: prepare
+            name: "PHP"
+            language: php
+            php:
+                - 7.2
+            git:
+                submodules: true
+
+            install:
+              - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
+              - git clone https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
+            script:
+                - composer require --dev nelson6e65/phpdoc-vuepress
+
+        - stage: deploy
+            name: "VuePress"
+            language: node_js
+            node_js:
+                - "10"
+            env:
+                - CXX=g++-4.8
+
+            addons:
+                apt:
+                    sources:
+                        - ubuntu-toolchain-r-test
+                    packages:
+                        - g++-4.8
+            install:
+                - npm install -g vuepress
+            before_script:
+                - phpdoc -d="src/" -t="docs/api/" --template="vendor/nelson6e65/phpdoc-vuepress/data/templates/vuepress"
+            script:
+                - npm run docs:build
+            cache:
+                directories:
+                    - "node_modules"
+            deploy:
+                provider: pages
+                skip-cleanup: true
+                local_dir: docs/.vuepress/dist
+                github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+                repo: NesCafe62/pandora3
+                keep-history: true
+                target-branch: master
+                on:
+                    branch: master
+
 notifications:
     email: false
-deploy:
-    provider: pages
-    skip-cleanup: true
-    local_dir: docs/.vuepress/dist
-    github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
-    repo: NesCafe62/pandora3
-    keep-history: true
-    target-branch: master
-    on:
-        branch: master
