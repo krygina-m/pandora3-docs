@@ -12,5 +12,6 @@
     <!--<parameter key="twig-debug">true</parameter>-->
     <parameter key="twig-extension">Cvuorinen\PhpdocMarkdownPublic\Extension\TwigMarkdownAnchorLink</parameter>
     <parameter key="twig-extension">Cvuorinen\PhpdocMarkdownPublic\Extension\TwigClassPublicMethods</parameter>
+    <parameter key="twig-extension">RavenFlux\Twig\SortExtension</parameter>
   </parameters>
 </template>
