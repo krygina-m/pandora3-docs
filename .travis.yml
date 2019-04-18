@@ -3,8 +3,10 @@ node_js:
     - "10"
 env:
     - CXX=g++-4.8
-php:
-    - 7.1
+matrix:
+  include:
+    - php: 7.1
+      dist: precise
 addons:
     apt:
         sources:
