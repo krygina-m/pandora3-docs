@@ -1,9 +1,10 @@
 # {{ project.name|raw }}
 
+{#
 {% for package in project.indexes.packages|sort_asc %}
 {% set packageHeader = false %}
 {% for class in package.interfaces|sort_asc %}
-{# if not class.abstract #}
+{--# if not class.abstract #--}
 {% if not packageHeader %}
 {% set packageHeader = true %}
 
@@ -11,30 +12,21 @@
 
 {% endif %}
 {% include 'class.md.twig' %}
-{# endif #}
+{--# endif #--}
 {% endfor %}
-{% for class in package.classes|sort_asc %}
-{# if not class.abstract #}
-{% if not packageHeader %}
-{% set packageHeader = true %}
+{% endfor %}
+#}
 
-## {{ class.namespace|replace({"\\Pandora3\\": ""}) }}
+{% set indexes = project.indexes %}
+{% set namespace = '' %}
+{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits)|sort_asc %}
+{% if class.namespace != namespace %}
+{% set namespace = class.namespace %}
+
+## {{ namespace|replace({"\\Pandora3\\": ""}) }}
 
 {% endif %}
 {% include 'class.md.twig' %}
-{# endif #}
-{% endfor %}
-{% for class in package.traits|sort_asc %}
-{# if not class.abstract #}
-{% if not packageHeader %}
-{% set packageHeader = true %}
-
-## {{ class.namespace|replace({"\\Pandora3\\": ""}) }}
-
-{% endif %}
-{% include 'class.md.twig' %}
-{# endif #}
-{% endfor %}
 {% endfor %}
 
 
