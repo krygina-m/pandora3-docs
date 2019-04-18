@@ -4,7 +4,7 @@
 
 {# Method signature #}
 ```php
-{{ method.static ? "#{class.name}::" }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
+{{ method.visibility != 'public' ? method.visibility~' ' }}{{ method.static ? 'static ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
 {{- argument.types ? argument.types|join('|')~' ' }}
 {{- argument.byReference ? '&' }}
 {{- argument.name }}{{ argument.default ? ' = '~argument.default }}
@@ -15,7 +15,6 @@
 
 {{ method.description|raw }}
 
-{% if method.static %}* This method is **static**.{% endif %}
 {% if method.deprecated %}* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.
 {% endif %}
 
