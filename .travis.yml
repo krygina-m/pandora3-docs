@@ -1,15 +1,18 @@
 language: node_js
 node_js:
     - "10"
-env:
+# env:
     # - CXX=g++-4.8
-    - TRAVIS_PHP_VERSION=7.1
+    # - TRAVIS_PHP_VERSION=7.1
 # addons:
 #    apt:
 #        sources:
 #            - ubuntu-toolchain-r-test
 #        packages:
 #            - g++-4.8
+language: php
+php:
+  - 7.0
 install:
     - npm install -g vuepress
     - composer require phpdocumentor/phpdocumentor
