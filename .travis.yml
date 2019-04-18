@@ -20,6 +20,7 @@ before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone --recurse-submodules https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
 script:
+    - php -v
     - php vendor/bin/phpdoc -d src -t docs/api --title "Pandora API documentation" --template="templates/markdown-pandora"
     # - php vendor/bin/phpdoc -d src -t docs/api --title "Pandora API documentation" --template="vendor/cvuorinen/phpdoc-markdown-public/data/templates/markdown-public"
     - npm run docs:build
