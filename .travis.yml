@@ -12,7 +12,7 @@ node_js:
 install:
     - phpenv global 7.1
     - npm install -g vuepress
-    - composer require phpdocumentor/phpdocumentor:^2.9
+    - composer require phpdocumentor/phpdocumentor:~2.9
     - composer require cvuorinen/phpdoc-markdown-public
 #    - composer require ravenflux/sort-functions:dev-master
 #    - composer require dpolac/twig-lambda
