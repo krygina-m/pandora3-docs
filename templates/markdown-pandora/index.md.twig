@@ -23,7 +23,7 @@
 {% if class.namespace.fullyQualifiedStructuralElementName != namespace %}
 {% set namespace = class.namespace.fullyQualifiedStructuralElementName %}
 
-{% ## {{ namespace|replace({"\\Pandora3\\": ""}) }} %}
+## {{ namespace|replace({"\\Pandora3\\": ""}) }}
 
 {% endif %}
 {% include 'class.md.twig' %}
