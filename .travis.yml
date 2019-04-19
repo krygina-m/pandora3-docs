@@ -1,9 +1,13 @@
-language: node_js
-node_js:
-    - "10"
+# language: node_js
+# node_js:
+#    - "10"
+
+language: php
+php:
+    - '7.2'
 
 install:
-    - phpenv global 7.2
+#    - phpenv global 7.2
     - composer install --no-interaction
 #    - composer require --dev phpdocumentor/phpdocumentor dev-master
 #    - composer require cvuorinen/phpdoc-markdown-public
