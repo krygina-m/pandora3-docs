@@ -19,8 +19,8 @@
 
 {% set indexes = project.indexes %}
 {% set namespace = '' %}
-{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|sort_by(["namespace","name"]) %} {# usort('namespace') sort_by(=> _.namespace) #}
-<pre>{{ dump(class.namespace.name) }}</pre>
+{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|sort_by(["namespace","fullyQualifiedStructuralElementName"]) %} {# usort('namespace') sort_by(=> _.namespace) #}
+<pre>{{ dump(class.namespace.fullyQualifiedStructuralElementName) }}</pre>
 {# if class.namespace.name != namespace #}
 {# set namespace = class.namespace.name #}
 
