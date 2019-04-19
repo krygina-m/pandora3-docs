@@ -1,6 +1,7 @@
 {
+    "minimum-stability": "dev",
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "dev-master"
+        "phpdocumentor/phpdocumentor": "~3"
     },
     "require": {
         "picocms/pico": "^2.0"
