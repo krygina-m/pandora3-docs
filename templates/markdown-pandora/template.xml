@@ -9,11 +9,11 @@
     <transformation writer="twig" source="templates/markdown-pandora/index.md.twig" artifact="README.md" />
   </transformations>
   <parameters>
-    <!--<parameter key="twig-debug">true</parameter>-->
+    <parameter key="twig-debug">true</parameter>
     <parameter key="twig-extension">Cvuorinen\PhpdocMarkdownPublic\Extension\TwigMarkdownAnchorLink</parameter>
     <parameter key="twig-extension">Cvuorinen\PhpdocMarkdownPublic\Extension\TwigClassPublicMethods</parameter>
     <parameter key="twig-extension">RavenFlux\Twig\SortExtension</parameter>
     <!--<parameter key="twig-extension">DPolac\TwigLambda\LambdaExtension</parameter>-->
-    <parameter key="twig-extension">Twig\Extension\DebugExtension</parameter>
+    <!--<parameter key="twig-extension">Twig\Extension\DebugExtension</parameter>-->
   </parameters>
 </template>
