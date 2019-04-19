@@ -5,7 +5,7 @@
 {# Method signature #}
 ```php
 {{ method.visibility != 'public' ? method.visibility~' ' }}{{ method.static ? 'static ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
-{{- argument.types ? argument.types|join('|')~' ' }}
+{{- argument.types ? argument.types|join('|')|raw~' ' }}
 {{- argument.byReference ? '&' }}
 {{- argument.name }}{{ argument.default ? ' = '~argument.default }}
 {%- if not loop.last %}, {% endif %}
