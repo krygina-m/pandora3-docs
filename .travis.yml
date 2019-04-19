@@ -12,7 +12,7 @@ node_js:
 install:
     - phpenv global 7.1
     - composer require --ignore-requirements cvuorinen/phpdoc-markdown-public
-    - sed -i '14s/.*/"phpdocumentor\/phpdocumentor": ">=2.8"/' vendor/cvuorinen/phpdoc-markdown-public/composer.json
+    - sed -i '14s/~/>=/' vendor/cvuorinen/phpdoc-markdown-public/composer.json
     - composer require phpdocumentor/phpdocumentor:dev-master
 #    - composer require ravenflux/sort-functions:dev-master
 #    - composer require dpolac/twig-lambda
