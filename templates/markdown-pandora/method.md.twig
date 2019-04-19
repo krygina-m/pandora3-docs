@@ -7,7 +7,7 @@
 {{ method.visibility != 'public' ? method.visibility~' ' }}{{ method.static ? 'static ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
 {{- argument.types ? argument.types|join('|')|raw~' ' }}
 {{- argument.byReference ? '&' }}
-{{- argument.name }}{{ argument.default ? ' = '~argument.default }}
+{{- argument.name }}{{ argument.default ? ' = '~argument.default|raw }}
 {%- if not loop.last %}, {% endif %}
 {%- endfor %} {% endif %})
 {{- method.response.types ? ': '~method.response.types|join('|') }}
