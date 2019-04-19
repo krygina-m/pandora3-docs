@@ -19,10 +19,10 @@
 
 {% set indexes = project.indexes %}
 {% set namespace = '' %}
-{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|usort('namespace') %} {# sort_by(=> _.namespace) #}
-<pre>{{ dump(class.namespace) }}</pre>
-{# if class.namespace != namespace #}
-{# set namespace = class.namespace #}
+{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|sort_by(=> _.namespace.name) %} {# usort('namespace') sort_by(=> _.namespace) #}
+<pre>{{ dump(class.namespace.name) }}</pre>
+{# if class.namespace.name != namespace #}
+{# set namespace = class.namespace.name #}
 
 {# ## {{ namespace|replace({"\\Pandora3\\": ""}) }} #}
 
