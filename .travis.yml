@@ -11,11 +11,11 @@ install:
 #    - composer require ravenflux/sort-functions:dev-master
 #    - composer require dpolac/twig-lambda
 #    - composer require picocms/pico
-    - sed -i '36s/.*/public function __construct()/' vendor/picocms/pico/lib/PicoTwigExtension.php
-    - sed -i '38s/.*//' vendor/picocms/pico/lib/PicoTwigExtension.php
     - npm install -g vuepress
 
 before_script:
+    - sed -i '36s/.*/public function __construct()/' vendor/picocms/pico/lib/PicoTwigExtension.php
+    - sed -i '38s/.*//' vendor/picocms/pico/lib/PicoTwigExtension.php
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone --recurse-submodules https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
 
