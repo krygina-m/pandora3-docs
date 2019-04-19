@@ -1,7 +1,6 @@
 {
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "dev-master",
-        "phpdocumentor/reflection": "dev-master"
+        "phpdocumentor/phpdocumentor": "dev-master"
     },
     "require": {
         "picocms/pico": "^2.0"
