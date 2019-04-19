@@ -15,7 +15,8 @@ install:
     - composer require phpdocumentor/phpdocumentor
     - composer require cvuorinen/phpdoc-markdown-public
 #    - composer require ravenflux/sort-functions:dev-master
-    - composer require dpolac/twig-lambda
+#    - composer require dpolac/twig-lambda
+    - composer require picocms/pico
 before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone --recurse-submodules https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
