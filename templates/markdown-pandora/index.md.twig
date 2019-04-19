@@ -19,7 +19,7 @@
 
 {% set indexes = project.indexes %}
 {% set namespace = '' %}
-{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|sort_by(=> _.namespace) %} {# usort('namespace') #}
+{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|usort('namespace') %} {# sort_by(=> _.namespace) #}
 {% if class.namespace != namespace %}
 {% set namespace = class.namespace %}
 
