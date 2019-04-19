@@ -20,12 +20,13 @@
 {% set indexes = project.indexes %}
 {% set namespace = '' %}
 {% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|usort('namespace') %} {# sort_by(=> _.namespace) #}
-{% if class.namespace != namespace %}
-{% set namespace = class.namespace %}
+<pre>{{ dump(class.namespace) }}</pre>
+{# if class.namespace != namespace #}
+{# set namespace = class.namespace #}
 
-## {{ namespace|replace({"\\Pandora3\\": ""}) }}
+{# ## {{ namespace|replace({"\\Pandora3\\": ""}) }} #}
 
-{% endif %}
+{# endif #}
 {% include 'class.md.twig' %}
 {% endfor %}
 
