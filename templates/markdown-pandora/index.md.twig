@@ -19,15 +19,14 @@
 
 {% set indexes = project.indexes %}
 {% set namespace = '' %}
-{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|sort_by(["namespace","fullyQualifiedStructuralElementName"]) %} {# usort('namespace') sort_by(=> _.namespace) #}
-<pre>{{ dump(class.namespace.fullyQualifiedStructuralElementName) }}</pre>
-{# if class.namespace.name != namespace #}
-{# set namespace = class.namespace.name #}
+{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|sort_by(["namespace","fullyQualifiedStructuralElementName"]) %}
+{% if class.namespace.fullyQualifiedStructuralElementName != namespace %}
+{% set namespace = class.namespace.fullyQualifiedStructuralElementName %}
 
-{# ## {{ namespace|replace({"\\Pandora3\\": ""}) }} #}
+{% ## {{ namespace|replace({"\\Pandora3\\": ""}) }} %}
 
-{# endif #}
-{# include 'class.md.twig' #}
+{% endif %}
+{% include 'class.md.twig' %}
 {% endfor %}
 
 
