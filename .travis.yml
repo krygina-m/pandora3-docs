@@ -11,9 +11,9 @@ node_js:
 #            - g++-4.8
 install:
     - phpenv global 7.1
-    - composer require phpdocumentor/phpdocumentor:dev-master
     - composer require cvuorinen/phpdoc-markdown-public
-#    - sed -i '14s/.2/>=2/' vendor/cvuorinen/phpdoc-markdown-public/composer.json
+    - sed -i '14s/.*//' vendor/cvuorinen/phpdoc-markdown-public/composer.json
+    - composer require phpdocumentor/phpdocumentor:dev-master
 #    - composer require ravenflux/sort-functions:dev-master
 #    - composer require dpolac/twig-lambda
     - composer require picocms/pico
