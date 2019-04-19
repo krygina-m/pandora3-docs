@@ -17,7 +17,7 @@ install:
     - npm install -g vuepress
     - composer require phpdocumentor/phpdocumentor
     - composer require cvuorinen/phpdoc-markdown-public
-    - composer require ravenflux/sort-functions:dev-master
+    - composer require ravenflux/sort-functions
 #    - composer require dpolac/twig-lambda
 before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
