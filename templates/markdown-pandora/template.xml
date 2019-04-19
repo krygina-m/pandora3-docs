@@ -14,5 +14,6 @@
     <parameter key="twig-extension">Cvuorinen\PhpdocMarkdownPublic\Extension\TwigClassPublicMethods</parameter>
     <parameter key="twig-extension">RavenFlux\Twig\SortExtension</parameter>
     <!--<parameter key="twig-extension">DPolac\TwigLambda\LambdaExtension</parameter>-->
+    <parameter key="twig-extension">Twig\Extension\DebugExtension</parameter>
   </parameters>
 </template>
