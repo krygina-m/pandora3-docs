@@ -4,8 +4,8 @@
         "phpdocumentor/phpdocumentor": "dev-develop"
     },
     "autoload": {
-        "psr-4": {
-            "Pico\\": "pico/lib/"
+        "psr-0": {
+            "Pico": "pico/lib/"
         }
     }
 }
