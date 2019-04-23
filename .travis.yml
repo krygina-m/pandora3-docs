@@ -4,7 +4,7 @@
 
 language: php
 php:
-    - '7.2'
+    - '7.0'
 
 install:
 #    - phpenv global 7.2
