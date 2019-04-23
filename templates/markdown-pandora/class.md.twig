@@ -25,7 +25,7 @@
 {% endif %}{# class.tags.see || class.tags.link #}
 
 {% for method in class.magicMethods.merge(class.inheritedMethods).merge(class.methods).all %}
-{% if method.visibility != 'private' %}
+{# if method.visibility != 'private' #}
 {% include 'method.md.twig' %}
-{% endif %}
+{# endif #}
 {% endfor %}
