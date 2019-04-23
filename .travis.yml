@@ -8,6 +8,7 @@ php:
 
 install:
 #    - phpenv global 7.2
+    - git clone https://github.com/picocms/Pico.git vendor/picocms/pico
     - composer install --no-interaction
     - composer show phpdocumentor/phpdocumentor
 #    - composer require --dev phpdocumentor/phpdocumentor dev-master
@@ -15,7 +16,7 @@ install:
 #    - sed -i '14s/.*//' vendor/cvuorinen/phpdoc-markdown-public/composer.json
 #    - composer require ravenflux/sort-functions:dev-master
 #    - composer require dpolac/twig-lambda
-    - composer require picocms/pico
+#    - composer require picocms/pico
     - npm install -g vuepress
 
 before_script:
