@@ -12,7 +12,6 @@ install:
     - sed -i '36s/.*/public function __construct()/' pico/lib/PicoTwigExtension.php
     - sed -i '38s/.*//' pico/lib/PicoTwigExtension.php
     - composer install --no-interaction
-    - composer show phpdocumentor/phpdocumentor
 #    - composer require --dev phpdocumentor/phpdocumentor dev-master
 #    - composer require cvuorinen/phpdoc-markdown-public
 #    - sed -i '14s/.*//' vendor/cvuorinen/phpdoc-markdown-public/composer.json
