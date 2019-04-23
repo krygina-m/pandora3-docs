@@ -2,12 +2,14 @@
 
 {{ method.summary|raw }}
 
+{% if method.parent.name != class.name %}**Inherited**{% endif %}
+
 {# Method signature #}
 ```php
-{{ method.visibility~' ' }}{{ method.abstract ? 'abstract ' }}{{ method.static ? 'static ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
-{{- argument.types ? argument.types|join('|')|raw~' ' }}
+{{ method.visibility~' ' }}{{ method.static ? 'static ' }}{{ method.final ? 'final ' }}{{ method.abstract ? 'abstract ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
+{{- argument.types ? argument.types|join('|')~' ' }}
 {{- argument.byReference ? '&' }}
-{{- '$'~argument.name }}{{ argument.default ? ' = '~argument.default|raw }}
+{{- '$'~argument.name }}{{ argument.default is not null ? ' = '~argument.default }}
 {%- if not loop.last %}, {% endif %}
 {%- endfor %} {% endif %})
 {{- method.response.types ? ': '~method.response.types|join('|') }}
@@ -44,9 +46,9 @@
 {% endif %}{# method.tags.throws || method.tags.throw #}
 
 {% if method.response.types and method.response.types|join() != 'void' %}
-**Return value:**
+**Returns:**
 
-**{{ method.response.types|route|join('|')|raw }}**
+{{ method.response.types|route|join('|')|raw }}
 {{ method.response.description|raw }}
 
 {% endif %}{# method.response.types #}
