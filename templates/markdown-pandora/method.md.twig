@@ -4,7 +4,7 @@
 
 {# Method signature #}
 ```php
-{{ method.visibility != 'public' ? method.visibility~' ' }}{{ method.static ? 'static ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
+{{ method.visibility~' ' }}{{ method.abstract ? 'abstract ' }}{{ method.static ? 'static ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
 {{- argument.types ? argument.types|join('|')|raw~' ' }}
 {{- argument.byReference ? '&' }}
 {{- '$'~argument.name }}{{ argument.default ? ' = '~argument.default|raw }}
@@ -18,25 +18,40 @@
 {% if method.deprecated %}* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.
 {% endif %}
 
-{% if method.arguments is not empty %}
-**Parameters:**
+{% if method.arguments|length > 0 %}
+**Arguments:**
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
 {% for argument in method.arguments %}
-| `${{ argument.name }}` | **{{ argument.types ? argument.types|join('&#124;')|raw }}** | {{ argument.description|replace({'|': '&#124;'})|raw }} |
+| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('&#124;')|raw }}** | {{ argument.description|replace({'|': '&#124;'})|raw }} |
 {% endfor %}
 
-{% endif %}{# method.arguments is not empty #}
+{% endif %}{# method.arguments #}
 
-{% if method.response.description %}
-**Return Value:**
+{% if method.tags.throws|length > 0 or method.tags.throw|length > 0 %}
+**Throws:**
 
+| Parameter | Type | Description |
+|-----------|------|-------------|
+{% for exception in method.tags.throws %}
+| {{ exception.types|route|join('&#124;')|raw }} | {{ exception.description|replace({'|': '&#124;'})|raw }} |
+{% endfor %}
+{% for exception in method.tags.throw %}
+| {{ exception.types|route|join('&#124;')|raw }} | {{ exception.description|replace({'|': '&#124;'})|raw }} |
+{% endfor %}
+
+{% endif %}{# method.tags.throws || method.tags.throw #}
+
+{% if method.response.types and method.response.types|join() != 'void' %}
+**Return value:**
+
+**{{ method.response.types|route|join('|')|raw }}**
 {{ method.response.description|raw }}
 
-{% endif %}
+{% endif %}{# method.response.types #}
 
-{% if method.tags.see is not empty or method.tags.link is not empty %}
+{% if method.tags.see|length > 0 or method.tags.link|length > 0 %}
 **See Also:**
 
 {% for see in method.tags.see %}
