@@ -2,5 +2,10 @@
     "minimum-stability": "dev",
     "require-dev": {
         "phpdocumentor/phpdocumentor": "dev-develop"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pico\\": "pico/lib/"
+        }
     }
 }
