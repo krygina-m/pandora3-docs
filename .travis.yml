@@ -9,7 +9,7 @@ php:
 install:
 #    - phpenv global 7.2
     - composer install --no-interaction
-    - composer show -i phpdocumentor/phpdocumentor
+    - composer show phpdocumentor/phpdocumentor
 #    - composer require --dev phpdocumentor/phpdocumentor dev-master
 #    - composer require cvuorinen/phpdoc-markdown-public
 #    - sed -i '14s/.*//' vendor/cvuorinen/phpdoc-markdown-public/composer.json
