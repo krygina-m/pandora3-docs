@@ -1,8 +1,7 @@
 {
     "minimum-stability": "dev",
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "dev-develop",
-        "symfony/dotenv": "^4.3"
+        "phpdocumentor/phpdocumentor": "dev-develop"
     },
     "autoload": {
         "psr-4": {
