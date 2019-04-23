@@ -8,7 +8,7 @@ php:
 
 install:
 #    - phpenv global 7.2
-    - git clone https://github.com/picocms/Pico.git vendor/picocms/pico
+    - git clone https://github.com/picocms/Pico.git pico
     - composer install --no-interaction
     - composer show phpdocumentor/phpdocumentor
 #    - composer require --dev phpdocumentor/phpdocumentor dev-master
