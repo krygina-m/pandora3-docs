@@ -5,14 +5,14 @@
 {{ class.description|raw }}
 
 * Full name: {{ class.FullyQualifiedStructuralElementName }}
-{% if class.parent %}* Extends {{ class.parent.FullyQualifiedStructuralElementName|default(class.parent.name) }}
+{% if class.parent %}* Extends {{ class.parent|route|join(', ')|raw }}
 {% endif %}
-{% if class.interfaces is not empty %}* This class implements: {{ class.interfaces|join(', ')|raw }}
+{% if class.interfaces|length %}* Implements {{ class.interfaces|route|join(', ')|raw }}
 {% endif %}
 {% if class.deprecated %}* **Warning:** this class is **deprecated**. This means that this class will likely be removed in a future version.
 {% endif %}
 
-{% if class.tags.see is not empty or class.tags.link is not empty %}
+{% if class.tags.see|length or class.tags.link|length %}
 **See Also:**
 
 {% for see in class.tags.see %}
@@ -24,8 +24,8 @@
 
 {% endif %}{# class.tags.see || class.tags.link #}
 
-{% for method in class.magicMethods.merge(class.inheritedMethods).merge(class.methods).all %}
-{# if method.visibility != 'private' #}
+{% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
+{# for method in class.magicMethods.merge(class.inheritedMethods).merge(class.methods).all #}
+{% for method in node.methods.merge(specialMethods) %}
 {% include 'method.md.twig' %}
-{# endif #}
 {% endfor %}
