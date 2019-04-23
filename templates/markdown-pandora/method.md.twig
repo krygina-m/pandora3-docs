@@ -20,7 +20,7 @@
 {% if method.deprecated %}* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.
 {% endif %}
 
-{% if method.arguments|length > 0 %}
+{% if method.arguments|length %}
 **Arguments:**
 
 | Parameter | Type | Description |
@@ -31,7 +31,7 @@
 
 {% endif %}{# method.arguments #}
 
-{% if method.tags.throws|length > 0 or method.tags.throw|length > 0 %}
+{% if method.tags.throws|length or method.tags.throw|length %}
 **Throws:**
 
 | Parameter | Type | Description |
@@ -53,7 +53,7 @@
 
 {% endif %}{# method.response.types #}
 
-{% if method.tags.see|length > 0 or method.tags.link|length > 0 %}
+{% if method.tags.see|length or method.tags.link|length %}
 **See Also:**
 
 {% for see in method.tags.see %}
