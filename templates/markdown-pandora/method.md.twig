@@ -32,8 +32,8 @@
 {% if method.tags.throws|length or method.tags.throw|length %}
 **Throws:**
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
+| Type | Description |
+|------|-------------|
 {% for exception in method.tags.throws %}
 | {{ exception.types|route|join('&#124;')|raw }} | {{ exception.description|replace({'|': '&#124;'})|raw }} |
 {% endfor %}
