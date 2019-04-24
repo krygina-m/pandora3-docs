@@ -1,8 +1,6 @@
-#### {{ method.name }}
+#### {{ method.name }}{{ method.parent.name != class.name ? ' (inherited)' }}
 
 {{ method.summary|raw }}
-
-{{ method.parent.name != class.name ? '**Inherited**' }}
 
 {# Method signature #}
 ```php
