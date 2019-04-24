@@ -28,9 +28,7 @@
 {% if class.properties.merge(specialProperties)|length %}
 **Properties:**
 {% for property in node.properties.merge(specialProperties) %}
-#### {{ property.name }}
-
-{{ property.parent.name != class.name ? ' **Inherited**' }}
+#### {{ property.name }}{{ property.parent.name != class.name ? ' (inherited)' }}
 
 {{ property.summary|raw }}
 
@@ -50,9 +48,7 @@
 {% if constants|length %}
 **Constants:**
 {% for constant in constants %}
-#### {{ constant.name }}
-
-{{ constant.parent.name != class.name ? ' **Inherited**' }}
+#### {{ constant.name }}{{ constant.parent.name != class.name ? ' (inherited)' }}
 
 {{ constant.summary|raw }}
 
