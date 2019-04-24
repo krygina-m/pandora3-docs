@@ -64,7 +64,7 @@
 
 {% set specialMethods = class.magicMethods ? class.inheritedMethods.merge(class.magicMethods) : class.inheritedMethods %}
 {% for method in class.methods.merge(specialMethods) %}
-{% if method.name != '__construct' or method.arguments|length or method.parent.name = class.name %}
+{% if method.name != '__construct' or method.arguments|length or method.parent.name == class.name %}
 {% include 'method.md.twig' %}
 {% endif %}
 {% endfor %}
