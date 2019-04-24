@@ -25,9 +25,10 @@
 {% endif %}{# class.tags.see || class.tags.link #}
 
 {% set specialProperties = class.magicProperties ? class.inheritedProperties.merge(class.magicProperties) : class.inheritedProperties %}
-{% if class.properties.merge(specialProperties)|length %}
+{% set properties = class.properties.merge(specialProperties) %}
+{% if properties|length %}
 **Properties:**
-{% for property in node.properties.merge(specialProperties) %}
+{% for property in properties %}
 #### {{ property.name }}{{ property.parent.name != class.name ? ' (inherited)' }}
 
 {{ property.summary|raw }}
