@@ -67,7 +67,6 @@
 {% endif %}{# class.constants #}
 
 {% set specialMethods = class.magicMethods ? class.inheritedMethods.merge(class.magicMethods) : class.inheritedMethods %}
-{# for method in class.magicMethods.merge(class.inheritedMethods).merge(class.methods).all #}
 {% for method in class.methods.merge(specialMethods) %}
 {% include 'method.md.twig' %}
 {% endfor %}
