@@ -24,8 +24,50 @@
 
 {% endif %}{# class.tags.see || class.tags.link #}
 
-{% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
+{% set specialProperties = class.magicProperties ? class.inheritedProperties.merge(class.magicProperties) : class.inheritedProperties %}
+{% if class.properties.merge(specialProperties)|length %}
+**Properties:**
+{% for property in node.properties.merge(specialProperties) %}
+#### {{ property.name }}
+
+{{ property.parent.name != class.name ? ' **Inherited**' }}
+
+{{ property.summary|raw }}
+
+{# Property signature #}
+```php
+{{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}: {{ property.types|join('|')|raw }}
+```
+
+{{ property.types|route|join('|')|raw }}
+
+{{ property.var.0.description|raw }}
+
+{% endfor %}
+{% endif %}{# class.properties #}
+
+{% set constants = class.constants.merge(class.inheritedConstants) %}
+{% if constants|length %}
+**Constants:**
+{% for constant in constants %}
+#### {{ constant.name }}
+
+{{ constant.parent.name != class.name ? ' **Inherited**' }}
+
+{{ constant.summary|raw }}
+
+{# Constant signature #}
+```php
+{{ property.visibility }} const {{ constant.name }} = {{ constant.value|raw }}
+```
+
+{{ constant.description|raw }}
+
+{% endfor %}
+{% endif %}{# class.constants #}
+
+{% set specialMethods = class.magicMethods ? class.inheritedMethods.merge(class.magicMethods) : class.inheritedMethods %}
 {# for method in class.magicMethods.merge(class.inheritedMethods).merge(class.methods).all #}
-{% for method in node.methods.merge(specialMethods) %}
+{% for method in class.methods.merge(specialMethods) %}
 {% include 'method.md.twig' %}
 {% endfor %}
