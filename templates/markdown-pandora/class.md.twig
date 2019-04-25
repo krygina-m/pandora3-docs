@@ -51,7 +51,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {% for constant in constants %}
 {%- set isInherited = (constant.parent.name != node.name) %}
 {%- if isInherited or constant.deprecated %}
-//{{ isInherited ? ' [deprecated]' }}{{ constant.deprecated ? ' [inherited]' }}
+//{{ isInherited ? ' [Deprecated]' }}{{ constant.deprecated ? ' [Inherited] from ' ~ constant.parent.FullyQualifiedStructuralElementName }}
 {% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ utils.printValue(constant.value)|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
 {% endfor %}
 ```
@@ -75,7 +75,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {% for property in properties %}
 Property **{{ property.name }}**
 
-{{ property.parent.name != node.name ? '* Inherited' }}
+{{ property.parent.name != node.name ? '* Inherited from ' ~ property.parent|route }}
 * Type: {{ property.types|route|join('|')|raw }}
 
 {% if property.deprecated %}::: warning Deprecated
