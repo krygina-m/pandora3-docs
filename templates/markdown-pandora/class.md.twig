@@ -1,9 +1,8 @@
 ### {{ node.name }}
 
-{{ node.summary|raw }}
+{# node.summary|raw #}
 
-{{ node.description|raw }}
-
+{{ 'Trait' in node.summary|raw ? '* Trait' }}
 * Full name: {{ node.FullyQualifiedStructuralElementName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}* Extends {{ parent|route|raw }}
@@ -12,6 +11,8 @@
 {% endif %}
 {% if node.deprecated %}* **Warning:** this class is **deprecated**. This means that this class will likely be removed in a future version.
 {% endif %}
+
+{{ node.description|raw }}
 
 {% if node.tags.see|length or node.tags.link|length %}
 **See Also:**
@@ -57,8 +58,6 @@
 {% for property in properties %}
 **Property {{ property.name }}**{{ property.parent.name != node.name ? ' (inherited)' }}
 
-{{ property.summary|raw }}
-
 * Type: {{ property.types|route|join('|')|raw }}
 
 {# Property signature #}
@@ -66,6 +65,7 @@
 {{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}: {{ property.types|join('|')|raw }}
 ```
 
+{# property.summary|raw #}
 {{ property.var.0.description|raw }}
 
 {% endfor %}
