@@ -3,12 +3,15 @@
 {# node.summary|raw #}
 
 {% if 'Trait' in node.summary %}
-{{- '* Trait' }}
-{%- else if 'Class' in node.summary %}
-{{- '* Class' }}
-{%- else if 'Interface' in node.summary %}
-{{- '* Interface' }}
-{%- endif %}
+{{ '* Trait' }}
+{% else if 'Class' in node.summary %}
+{{ '* Class' }}
+{% node.abstract %}
+{{ '* Abstract' }}
+{% endif %}
+{% else if 'Interface' in node.summary %}
+{{ '* Interface' }}
+{% endif %}
 * Full name: {{ node.FullyQualifiedStructuralElementName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}* Extends {{ parent|route|raw }}
