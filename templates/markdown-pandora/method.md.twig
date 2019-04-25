@@ -1,5 +1,5 @@
 Method **{{ method.name }}**
-{# set headerLink = class.namespace.FullyQualifiedStructuralElementName|replace({"\\Pandora3\\": "", "\\": "."}) ~ '.method-' ~ method.name #}
+{# set headerLink = class.namespace.FullyQualifiedStructuralElementName|replace({"\\Pandora3\\": '', "\\": '.'}) ~ '.method-' ~ method.name #}
 {# set headerTitle = method.name ~ (method.parent.name != class.name ? ' (inherited)') #}
 {# <h4 id="{{ headerLink }}"><a href="#{{ headerLink }}" aria-hidden="true" class="header-anchor">#</a> {{ headerTitle }}</h4> #}
 
@@ -27,7 +27,7 @@ Method **{{ method.name }}**
 | Parameter | Type | Description |
 |-----------|------|-------------|
 {% for argument in method.arguments %}
-| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('&#124;')|raw }}** | {{ argument.description|replace({'|': '&#124;'})|raw }} |
+| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('&vert;')|raw }}** | {{ argument.description|replace({'|': '&vert;'})|raw }} |
 {% endfor %}
 
 {% endif %}{# method.arguments #}
@@ -36,10 +36,10 @@ Method **{{ method.name }}**
 **Throws:**
 
 {% for exception in method.tags.throws %}
-{{ exception.types|route|join('&#124;')|raw }} {{ exception.description|replace({'|': '&#124;'})|raw }}
+{{ exception.types|route|join('|')|raw }} {{ exception.description|raw }}
 {% endfor %}
 {% for exception in method.tags.throw %}
-{{ exception.types|route|join('&#124;')|raw }} {{ exception.description|replace({'|': '&#124;'})|raw }}
+{{ exception.types|route|join('|')|raw }} {{ exception.description|raw }}
 {% endfor %}
 
 {% endif %}{# method.throw #}
