@@ -5,7 +5,7 @@
 {{ class.description|raw }}
 
 * Full name: {{ class.FullyQualifiedStructuralElementName }}
-{% if class.parent %}* Extends {{ class.parent|route|join(', ')|raw }}
+{% if class.parent|length %}* Extends {{ class.parent.0|route|raw }}
 {% endif %}
 {% if class.interfaces|length %}* Implements {{ class.interfaces|route|join(', ')|raw }}
 {% endif %}
