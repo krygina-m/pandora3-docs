@@ -3,7 +3,7 @@
 {# set headerTitle = method.name ~ (method.parent.name != class.name ? ' (inherited)') #}
 {# <h4 id="{{ headerLink }}"><a href="#{{ headerLink }}" aria-hidden="true" class="header-anchor">#</a> {{ headerTitle }}</h4> #}
 
-{{ method.summary|raw }}
+{% if method.deprecated %}* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.{% endif %}
 
 {# Method signature #}
 ```php
@@ -16,10 +16,8 @@
 {{- (method.name != '__construct' and method.response.types) ? ': '~method.response.types|join('|') }}
 ```
 
-{{ method.description|raw }}
-
-{% if method.deprecated %}* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.
-{% endif %}
+{{ method.summary|raw }}
+{# method.description|raw #}
 
 {% if method.arguments|length %}
 **Arguments:**
