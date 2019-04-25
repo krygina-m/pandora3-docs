@@ -13,8 +13,9 @@
 {% endif %}
 
 * {{ nodeType|capitalize }}
-{%- if node.abstract %}* Abstract
-{% endif %}
+{%- if node.abstract %}
+* Abstract
+{%- endif %}
 * Full name: {{ node.FullyQualifiedStructuralElementName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}* Extends: {{ parent|route|raw }}
