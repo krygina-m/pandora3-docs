@@ -67,7 +67,7 @@
 
 {# Property signature #}
 ```php
-{{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}: {{ property.types|join('|')|raw }}
+{{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}{{ property.default ? ' = '~property.default }}: {{ property.types|join('|')|raw }}
 ```
 
 {# property.summary|raw #}
