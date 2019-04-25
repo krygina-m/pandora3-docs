@@ -30,6 +30,7 @@
 
 {% endif %}{# node.tags #}
 
+---
 
 {% set constants = node.constants.merge(node.inheritedConstants) %}
 {% if constants|length %}
@@ -44,6 +45,7 @@
 {% endfor %}
 ```
 
+---
 {#
 #### {{ constant.name }}{{ constant.parent.name != node.name ? ' (inherited)' }}
 
@@ -73,6 +75,7 @@ Property **{{ property.name }}**
 {# property.summary|raw #}
 {{ property.var.0.description|raw }}
 
+---
 {% endfor %}
 {% endif %}{# node.properties #}
 
