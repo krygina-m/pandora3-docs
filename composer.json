@@ -6,6 +6,8 @@
     "autoload": {
         "psr-0": {
             "Pico": "pico/lib/",
+        },
+        "psr-4": {
             "TwigExtension//": "Twig/"
         }
     }
