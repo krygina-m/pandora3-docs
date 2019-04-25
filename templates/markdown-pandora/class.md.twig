@@ -9,9 +9,9 @@
 {% endif %}
 * Full name: {{ node.FullyQualifiedStructuralElementName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
-{% if parent %}* Extends {{ parent|route|raw }}
+{% if parent %}* Extends: {{ parent|route|raw }}
 {% endif %}
-{% if node.interfaces|length %}* Implements {{ node.interfaces|route|join(', ')|raw }}
+{% if node.interfaces|length %}* Implements: {{ node.interfaces|route|join(', ')|raw }}
 {% endif %}
 {% if node.deprecated %}* **Warning:** this class is **deprecated**. This means that this class will likely be removed in a future version.
 {% endif %}
