@@ -4,8 +4,8 @@
 
 {% if 'Trait' in node.summary %}* Trait
 {% elseif 'Class' in node.summary %}* Class
-{{ node.abstract ? '* Abstract' }}
-{% elseif 'Interface' in node.summary %}* Interface
+{% if node.abstract %}* Abstract
+{% endif %}{% elseif 'Interface' in node.summary %}* Interface
 {% endif %}
 * Full name: {{ node.FullyQualifiedStructuralElementName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
