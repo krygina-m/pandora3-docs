@@ -55,11 +55,10 @@
 **Properties:**
 
 {% for property in properties %}
-**Property {{ property.name }}**
+**Property {{ property.name }}**{{ property.parent.name != node.name ? ' (inherited)' }}
 
 {{ property.summary|raw }}
 
-{{ property.parent.name != node.name ? '* Inherited' }}
 * Type: {{ property.types|route|join('|')|raw }}
 
 {# Property signature #}
