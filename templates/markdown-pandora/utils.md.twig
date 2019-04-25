@@ -2,6 +2,6 @@
 {%- if value|isNumber or '::' in value or '[' in value or value in ['true', 'false', 'null'] %}
 {{- value|raw }}
 {%- else %}
-{{- ('"'~value~'"')|raw }}
+{{- ("'"~value~"'")|raw }}
 {%- endif %}
 {%- endmacro %}
