@@ -5,7 +5,7 @@ Method **{{ method.name }}**
 {# set headerTitle = method.name ~ (method.parent.name != node.name ? ' (inherited)') #}
 {# <h4 id="{{ headerLink }}"><a href="#{{ headerLink }}" aria-hidden="true" node="header-anchor">#</a> {{ headerTitle }}</h4> #}
 
-{{ method.parent.name != node.name ? '* Inherited from ' ~ method.parent.FullyQualifiedStructuralElementName|route ~ ' (' ~ method.parent.name ~ ' ' ~ node.name ~ ')' }}
+{{ method.parent.name != node.name ? '* Inherited from ' ~ method.parent|route ~ ' (' ~ method.parent.name ~ ' ' ~ node.name ~ ')' }}
 
 {% if method.deprecated %}::: warning Deprecated
 This means that this method will likely be removed in a future version
