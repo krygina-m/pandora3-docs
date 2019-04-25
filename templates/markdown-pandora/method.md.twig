@@ -1,3 +1,5 @@
+{% import 'utils.md.twig' as utils %}
+
 Method **{{ method.name }}**
 {# set headerLink = class.namespace.FullyQualifiedStructuralElementName|replace({"\\Pandora3\\": "", "\\": "."}) ~ '.method-' ~ method.name #}
 {# set headerTitle = method.name ~ (method.parent.name != class.name ? ' (inherited)') #}
@@ -14,7 +16,7 @@ This means that this method will likely be removed in a future version
 {{ method.abstract ? 'abstract ' }}{{ method.visibility }} {{ method.static ? 'static ' }}{{ method.final ? 'final ' }}{{ method.name }}( {% if method.arguments is not empty %}{% for argument in method.arguments %}
 {{- argument.types ? argument.types|join('|')~' ' }}
 {{- argument.byReference ? '&' }}
-{{- '$'~argument.name }}{{ argument.default is not null ? ' = '~argument.default }}
+{{- '$'~argument.name }}{{ argument.default is not null ? ' = '~utils.printValue(argument.default) }}
 {%- if not loop.last %}, {% endif %}
 {%- endfor %} {% endif %})
 {{- (method.name != '__construct' and method.response.types) ? ': '~method.response.types|join('|') }}
