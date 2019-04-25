@@ -27,7 +27,7 @@ Method **{{ method.name }}**
 | Parameter | Type | Description |
 |-----------|------|-------------|
 {% for argument in method.arguments %}
-| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('&vert;')|raw }}** | {{ argument.description|replace({'|': '&vert;'})|raw }} |
+| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('&vert;') }}** | {{ argument.description|replace({'|': '&vert;'}) }} |
 {% endfor %}
 
 {% endif %}{# method.arguments #}
