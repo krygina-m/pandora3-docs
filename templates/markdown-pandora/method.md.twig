@@ -13,7 +13,7 @@
 {{- '$'~argument.name }}{{ argument.default is not null ? ' = '~argument.default }}
 {%- if not loop.last %}, {% endif %}
 {%- endfor %} {% endif %})
-{{- method.response.types ? ': '~method.response.types|join('|') }}
+{{- (method.name != '__construct' and method.response.types) ? ': '~method.response.types|join('|') }}
 ```
 
 {{ method.description|raw }}
