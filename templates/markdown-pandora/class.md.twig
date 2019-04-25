@@ -43,7 +43,7 @@
 {% for constant in constants %}
 {%- if constant.parent.name != node.name %}
 // inherited
-{% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ utils.printValue(constant.value) }}{{ constant.summary ? ' // '~constant.summary|raw }}
+{% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ utils.printValue(constant.value)|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
 {% endfor %}
 ```
 
@@ -71,7 +71,7 @@ Property **{{ property.name }}**
 
 {# Property signature #}
 ```php
-{{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}{{ property.default is not null ? ' = '~utils.printValue(property.default) }}: {{ property.types|join('|')|raw }}
+{{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}{{ property.default is not null ? ' = '~utils.printValue(property.default)|raw }}: {{ property.types|join('|')|raw }}
 ```
 
 {# property.summary|raw #}
