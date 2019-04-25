@@ -1,7 +1,7 @@
 {% macro printValue(value) %}
 {%- if value|isNumber or '::' in value or '[' in value or value in ['true', 'false', 'null'] %}
-{{- value }}
+{{- value|raw }}
 {%- else %}
-{{- '"'~value~'"' }}
+{{- ('"'~value~'"')|raw }}
 {%- endif %}
 {%- endmacro %}
