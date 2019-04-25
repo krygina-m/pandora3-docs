@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-  <author>Carl Vuorinen</author>
-  <email>carl.vuorinen@gmail.com</email>
+  <author>Petr Gostn</author>
+  <email>nescafe238@gmail.com</email>
   <version>1.0.0</version>
-  <copyright>Carl Vuorinen 2015</copyright>
-  <description>Generate usage documentation (documents only it's public API) for a small library in Markdown format so it can be published in GitHub.</description>
+  <copyright>Petr Gostn 2019</copyright>
+  <description>PhpDocumentor markdown template for Pandora 3 framework.</description>
   <transformations>
     <transformation writer="twig" source="templates/markdown-pandora/index.md.twig" artifact="README.md" />
   </transformations>
