@@ -42,7 +42,7 @@
 ```php
 {% for constant in constants %}
 {%- if constant.parent.name != node.name %}
-// inherited
+// [inherited]
 {% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ utils.printValue(constant.value)|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
 {% endfor %}
 ```
