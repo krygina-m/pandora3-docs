@@ -71,7 +71,7 @@ Property **{{ property.name }}**
 
 {# Property signature #}
 ```php
-{{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}{{ property.default is not null ? ' = '~utils.printValue(property.default)|raw }}: {{ property.types|join('|')|raw }}
+{{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}{{ property.default is not null ? (' = '~utils.printValue(property.default))|raw }}: {{ property.types|join('|')|raw }}
 ```
 
 {# property.summary|raw #}
