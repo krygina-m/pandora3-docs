@@ -29,7 +29,7 @@ This means that this method will likely be removed in a future version
 | Arguemnt | Type | Description |
 |----------|------|-------------|
 {% for argument in method.arguments %}
-| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('\|') }}** | {{ argument.description|replace({'|': '\|'}) }} |
+| `${{ argument.name }}` | **{{ 'Aa\|' }}{{ argument.types ? argument.types|route|join('\|') }}** | {{ argument.description|replace({'|': '\|'}) }} |
 {% endfor %}
 
 {% endif %}{# method.arguments #}
