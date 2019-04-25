@@ -5,8 +5,8 @@
 {{ node.description|raw }}
 
 * Full name: {{ node.FullyQualifiedStructuralElementName }}
-{% set parent = node.parent|first %}
-{% if parent|trim %}* Extends {{ parent|route|raw }}
+{% set parent = node.parent is iterable ? node.parent|first : node.parent %}
+{% if parent %}* Extends {{ parent|route|raw }}
 {% endif %}
 {% if node.interfaces|length %}* Implements {{ node.interfaces|route|join(', ')|raw }}
 {% endif %}
