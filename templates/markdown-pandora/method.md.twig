@@ -35,16 +35,14 @@ Method **{{ method.name }}**
 {% if method.tags.throws|length or method.tags.throw|length %}
 **Throws:**
 
-| Type | Description |
-|------|-------------|
 {% for exception in method.tags.throws %}
-| {{ exception.types|route|join('&#124;')|raw }} | {{ exception.description|replace({'|': '&#124;'})|raw }} |
+{{ exception.types|route|join('&#124;')|raw }} {{ exception.description|replace({'|': '&#124;'})|raw }}
 {% endfor %}
 {% for exception in method.tags.throw %}
-| {{ exception.types|route|join('&#124;')|raw }} | {{ exception.description|replace({'|': '&#124;'})|raw }} |
+{{ exception.types|route|join('&#124;')|raw }} {{ exception.description|replace({'|': '&#124;'})|raw }}
 {% endfor %}
 
-{% endif %}{# method.tags.throws || method.tags.throw #}
+{% endif %}{# method.throw #}
 
 {% if method.name != '__construct' and method.response.types and method.response.types|join() != 'void' %}
 **Returns:**
