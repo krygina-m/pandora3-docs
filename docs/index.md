@@ -12,7 +12,9 @@ features:
   details: ...
 - title: Configurable
   details: ...
-footer: Copyright © 2019
+prev: false
+next: false
+footer: Pandora team © 2019
 description: Легковесный PHP Framework
 meta:
   - name: og:title
