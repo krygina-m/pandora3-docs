@@ -26,10 +26,10 @@ This means that this method will likely be removed in a future version
 {% if method.arguments|length %}
 **Arguments:**
 
-| Parameter | Type | Description |
-|-----------|------|-------------|
+| Arguemnt | Type | Description |
+|----------|------|-------------|
 {% for argument in method.arguments %}
-| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join("\\|") }}** | {{ argument.description|replace({"|": "\\|"}) }} |
+| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('\|') }}** | {{ argument.description|replace({'|': '\|'}) }} |
 {% endfor %}
 
 {% endif %}{# method.arguments #}
