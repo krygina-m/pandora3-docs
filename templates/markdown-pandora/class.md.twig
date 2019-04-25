@@ -4,10 +4,16 @@
 
 {# node.summary|raw #}
 
-{% if 'Trait' in node.summary %}* Trait
-{% elseif 'Class' in node.summary %}* Class
-{% if node.abstract %}* Abstract
-{% endif %}{% elseif 'Interface' in node.summary %}* Interface
+{% if 'Trait' in node.summary %}
+{% set nodeType = 'trait' %}
+{% elseif 'Interface' in node.summary %}
+{% set nodeType = 'interface' %}
+{% else %}
+{% set nodeType = 'class' %}
+{% endif %}
+
+* {{ nodeType|capitalize }}
+{%- if node.abstract %}* Abstract
 {% endif %}
 * Full name: {{ node.FullyQualifiedStructuralElementName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
@@ -15,8 +21,10 @@
 {% endif %}
 {% if node.interfaces|length %}* Implements: {{ node.interfaces|route|join(', ')|raw }}
 {% endif %}
-{% if node.deprecated %}* **Warning:** this class is **deprecated**. This means that this class will likely be removed in a future version.
-{% endif %}
+
+{% if node.deprecated %}::: warning Deprecated
+This {{ nodeType }} will likely be removed in a future version
+:::{% endif %}
 
 {{ node.description|raw }}
 
