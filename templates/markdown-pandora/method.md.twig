@@ -1,7 +1,9 @@
-**Method {{ method.name }}**{{ method.parent.name != class.name ? ' (inherited)' }}
+Method **{{ method.name }}**
 {# set headerLink = class.namespace.FullyQualifiedStructuralElementName|replace({"\\Pandora3\\": "", "\\": "."}) ~ '.method-' ~ method.name #}
 {# set headerTitle = method.name ~ (method.parent.name != class.name ? ' (inherited)') #}
 {# <h4 id="{{ headerLink }}"><a href="#{{ headerLink }}" aria-hidden="true" class="header-anchor">#</a> {{ headerTitle }}</h4> #}
+
+{{ method.parent.name != class.name ? '* Inherited' }}
 
 {% if method.deprecated %}* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.{% endif %}
 
