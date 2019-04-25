@@ -78,10 +78,13 @@
 
 
 {% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
-{% for method in node.methods.merge(specialMethods) %}
+{% set methods = node.methods.merge(specialMethods) %}
+{% if methods|length %}
 **Methods:**
 
+{% for method in methods %}
 {% if method.name != '__construct' or method.arguments|length %}
 {% include 'method.md.twig' %}
 {% endif %}
 {% endfor %}
+{% endif %}
