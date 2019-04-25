@@ -60,8 +60,9 @@
 **Properties:**
 
 {% for property in properties %}
-**Property {{ property.name }}**{{ property.parent.name != node.name ? ' (inherited)' }}
+**Property {{ property.name }}**
 
+{{ property.parent.name != node.name ? '* Inherited' }}
 * Type: {{ property.types|route|join('|')|raw }}
 
 {# Property signature #}
