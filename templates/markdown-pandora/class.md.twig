@@ -23,7 +23,7 @@
 {% endif %}
 
 {% if node.deprecated %}::: warning Deprecated
-This {{ nodeType }} will likely be removed in a future version
+This means that this {{ nodeType }} will likely be removed in a future version
 :::{% endif %}
 
 {{ node.description|raw }}
@@ -49,8 +49,9 @@ This {{ nodeType }} will likely be removed in a future version
 {# signatures #}
 ```php
 {% for constant in constants %}
-{%- if constant.parent.name != node.name %}
-// [inherited]
+{%- set isInherited = (constant.parent.name != node.name) %}
+{%- if isInherited or constant.deprecated %}
+//{{ isInherited ? ' [deprecated]' }}{{ constant.deprecated ? ' [inherited]' }}
 {% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ utils.printValue(constant.value)|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
 {% endfor %}
 ```
@@ -76,6 +77,10 @@ Property **{{ property.name }}**
 
 {{ property.parent.name != node.name ? '* Inherited' }}
 * Type: {{ property.types|route|join('|')|raw }}
+
+{% if property.deprecated %}::: warning Deprecated
+This means that this property will likely be removed in a future version
+:::{% endif %}
 
 {# Property signature #}
 ```php
