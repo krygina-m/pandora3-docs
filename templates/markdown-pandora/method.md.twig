@@ -46,13 +46,14 @@
 
 {% endif %}{# method.tags.throws || method.tags.throw #}
 
-{% if method.response.types and method.response.types|join() != 'void' %}
+{% if method.name != '__construct' and method.response.types and method.response.types|join() != 'void' %}
 **Returns:**
 
-{{ method.response.types|route|join('|')|raw }}
+* Type: {{ method.response.types|route|join('|')|raw }}
+
 {{ method.response.description|raw }}
 
-{% endif %}{# method.response.types #}
+{% endif %}{# method.response #}
 
 {% if method.tags.see|length or method.tags.link|length %}
 **See Also:**
