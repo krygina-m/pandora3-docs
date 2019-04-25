@@ -1,6 +1,11 @@
 module.exports = {
     base: '/pandora3/',
     themeConfig: {
+        repo: 'PandoraTeam/pandora3-Core',
+        docsRepo: 'PandoraTeam/pandora3-docs',
+        docsDir: 'docs',
+        editLinks: true,
+        
         nav: [
             {text: 'Быстрый старт',     link: '/getting-started.html'},
             {text: 'Основы',            link: '/basics.html'},
