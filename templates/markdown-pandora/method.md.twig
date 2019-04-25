@@ -29,12 +29,7 @@ This means that this method will likely be removed in a future version
 | Arguemnt | Type | Description |
 |----------|------|-------------|
 {% for argument in method.arguments %}
-| `${{ argument.name }}` | **{{ argument.types ? argument.types|join("\\|")|raw }}** | {{ argument.description|replace({'|': "\\|"})|raw }} |
-{% endfor %}
-
-{{ dump(['\\Aa', 'Bb']|join("\\|")) }}
-{% for argument in method.arguments %}
-{{ dump(argument.types|route|join("\\|")) }}
+| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|first|replace({"|": "\\|"})|raw }}** | {{ argument.description|replace({'|': "\\|"})|raw }} |
 {% endfor %}
 
 {% endif %}{# method.arguments #}
@@ -43,18 +38,18 @@ This means that this method will likely be removed in a future version
 **Throws:**
 
 {% for exception in method.tags.throws %}
-{{ exception.types|route|join('|')|raw }} {{ exception.description|raw }}
+{{ exception.types|route|first|raw }} {{ exception.description|raw }}
 {% endfor %}
 {% for exception in method.tags.throw %}
-{{ exception.types|route|join('|')|raw }} {{ exception.description|raw }}
+{{ exception.types|route|first|raw }} {{ exception.description|raw }}
 {% endfor %}
 
 {% endif %}{# method.throw #}
 
-{% if method.name != '__construct' and method.response.types and method.response.types|join() != 'void' %}
+{% if method.name != '__construct' and method.response.types and method.response.types|join != 'void' %}
 **Returns:**
 
-* Type: {{ method.response.types|route|join('|')|raw }}
+* Type: {{ method.response.types|route|first|raw }}
 
 {{ method.response.description|raw }}
 
