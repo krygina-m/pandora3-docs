@@ -8,7 +8,7 @@
             "Pico": "pico/lib/"
         },
         "psr-4": {
-            "TwigExtension//": "Twig/"
+            "TwigExtension\\": "Twig/"
         }
     }
 }
