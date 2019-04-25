@@ -17,13 +17,14 @@
 {% endfor %}
 #}
 
-{% set indexes = project.indexes %}
-{% set namespace = '' %}
-{% for class in indexes.classes.merge(indexes.interfaces).merge(indexes.traits).all|sort_by(["namespace","fullyQualifiedStructuralElementName"]) %}
-{% if class.namespace.fullyQualifiedStructuralElementName != namespace %}
-{% set namespace = class.namespace.fullyQualifiedStructuralElementName %}
+{% set nodes = project.indexes.classes.merge(project.indexes.interfaces).merge(project.indexes.traits).all %}
+{% set lastNamespace = '' %}
+{% for node in nodes|sort_by(["namespace", "fullyQualifiedStructuralElementName"]) %}
+{% set namespace = node.namespace.fullyQualifiedStructuralElementName %}
+{% if namespace != lastNamespace %}
+{% set lastNamespace = namespace %}
 
-## {{ namespace|replace({"\\Pandora3\\": ""}) }}
+## {{ lastNamespace|replace({"\\Pandora3\\": ""}) }}
 
 {% endif %}
 {% include 'class.md.twig' %}
