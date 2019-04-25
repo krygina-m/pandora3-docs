@@ -76,7 +76,7 @@
 {% for method in node.methods.merge(specialMethods) %}
 **Methods:**
 
-{% if method.name != '__construct' or method.arguments|length or method.parent.name == node.name %}
+{% if method.name != '__construct' or method.arguments|length %}
 {% include 'method.md.twig' %}
 {% endif %}
 {% endfor %}
