@@ -1,72 +1,83 @@
-### {{ class.name }}
+### {{ node.name }}
 
-{{ class.summary|raw }}
+{{ node.summary|raw }}
 
-{{ class.description|raw }}
+{{ node.description|raw }}
 
-* Full name: {{ class.FullyQualifiedStructuralElementName }}
-{% set parent = class.parent|first %}
+* Full name: {{ node.FullyQualifiedStructuralElementName }}
+{% set parent = node.parent|first %}
 {% if parent|trim %}* Extends {{ parent|route|raw }}
 {% endif %}
-{% if class.interfaces|length %}* Implements {{ class.interfaces|route|join(', ')|raw }}
+{% if node.interfaces|length %}* Implements {{ node.interfaces|route|join(', ')|raw }}
 {% endif %}
-{% if class.deprecated %}* **Warning:** this class is **deprecated**. This means that this class will likely be removed in a future version.
+{% if node.deprecated %}* **Warning:** this class is **deprecated**. This means that this class will likely be removed in a future version.
 {% endif %}
 
-{% if class.tags.see|length or class.tags.link|length %}
+{% if node.tags.see|length or node.tags.link|length %}
 **See Also:**
 
-{% for see in class.tags.see %}
+{% for see in node.tags.see %}
 * {{ see.reference }} {% if see.description %}- {{ see.description|raw }}{% endif %}
 {% endfor %}
-{% for link in class.tags.link %}
+{% for link in node.tags.link %}
 * {{ link.link }} {% if link.description and link.description != link.link %}- {{ link.description|raw }}{% endif %}
 {% endfor %}
 
-{% endif %}{# class.tags.see || class.tags.link #}
+{% endif %}{# node.tags #}
 
-{% set specialProperties = class.magicProperties ? class.inheritedProperties.merge(class.magicProperties) : class.inheritedProperties %}
-{% set properties = class.properties.merge(specialProperties) %}
+
+{% set constants = node.constants.merge(node.inheritedConstants) %}
+{% if constants|length %}
+**Constants:**
+
+{# signatures #}
+```php
+{% for constant in constants %}
+{%- if constant.parent.name != node.name %}
+// inherited
+{% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ constant.value|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
+{% endfor %}
+```
+
+{#
+#### {{ constant.name }}{{ constant.parent.name != node.name ? ' (inherited)' }}
+
+{{ constant.summary|raw }}
+
+{{ constant.description|raw }}
+#}
+{% endif %}{# node.constants #}
+
+
+{% set specialProperties = node.magicProperties ? node.inheritedProperties.merge(node.magicProperties) : node.inheritedProperties %}
+{% set properties = node.properties.merge(specialProperties) %}
 {% if properties|length %}
 **Properties:**
+
 {% for property in properties %}
-#### {{ property.name }}{{ property.parent.name != class.name ? ' (inherited)' }}
+**Property {{ property.name }}**
 
 {{ property.summary|raw }}
+
+{{ property.parent.name != node.name ? '* Inherited' }}
+* Type: {{ property.types|route|join('|')|raw }}
 
 {# Property signature #}
 ```php
 {{ property.visibility }} {{ property.static ? 'static ' }}{{ '$'~property.name }}: {{ property.types|join('|')|raw }}
 ```
 
-{{ property.types|route|join('|')|raw }}
-
 {{ property.var.0.description|raw }}
 
 {% endfor %}
-{% endif %}{# class.properties #}
+{% endif %}{# node.properties #}
 
-{% set constants = class.constants.merge(class.inheritedConstants) %}
-{% if constants|length %}
-**Constants:**
-{% for constant in constants %}
-#### {{ constant.name }}{{ constant.parent.name != class.name ? ' (inherited)' }}
 
-{{ constant.summary|raw }}
+{% set specialMethods = node.magicMethods ? node.inheritedMethods.merge(node.magicMethods) : node.inheritedMethods %}
+{% for method in node.methods.merge(specialMethods) %}
+**Methods:**
 
-{# Constant signature #}
-```php
-{{ property.visibility }} const {{ constant.name }} = {{ constant.value|raw }}
-```
-
-{{ constant.description|raw }}
-
-{% endfor %}
-{% endif %}{# class.constants #}
-
-{% set specialMethods = class.magicMethods ? class.inheritedMethods.merge(class.magicMethods) : class.inheritedMethods %}
-{% for method in class.methods.merge(specialMethods) %}
-{% if method.name != '__construct' or method.arguments|length or method.parent.name == class.name %}
+{% if method.name != '__construct' or method.arguments|length or method.parent.name == node.name %}
 {% include 'method.md.twig' %}
 {% endif %}
 {% endfor %}
