@@ -5,7 +5,9 @@ Method **{{ method.name }}**
 
 {{ method.parent.name != class.name ? '* Inherited' }}
 
-{% if method.deprecated %}* **Warning:** this method is **deprecated**. This means that this method will likely be removed in a future version.{% endif %}
+{% if method.deprecated %}::: warning Deprecated
+This means that this method will likely be removed in a future version
+:::{% endif %}
 
 {# Method signature #}
 ```php
@@ -27,7 +29,7 @@ Method **{{ method.name }}**
 | Parameter | Type | Description |
 |-----------|------|-------------|
 {% for argument in method.arguments %}
-| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join('&vert;') }}** | {{ argument.description|replace({'|': '&vert;'}) }} |
+| `${{ argument.name }}` | **{{ argument.types ? argument.types|route|join("\\|") }}** | {{ argument.description|replace({"|": "\\|"}) }} |
 {% endfor %}
 
 {% endif %}{# method.arguments #}
