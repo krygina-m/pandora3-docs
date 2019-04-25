@@ -3,6 +3,7 @@
 ### {{ node.name }}
 
 {# node.summary|raw #}
+{% set nodeFullName = node.FullyQualifiedStructuralElementName %}
 
 {% if 'Trait' in node.summary %}
 {% set nodeType = 'trait' %}
@@ -16,7 +17,7 @@
 {%- if node.abstract %}
 * Abstract
 {%- endif %}
-* Full name: {{ node.FullyQualifiedStructuralElementName }}
+* Full name: {{ nodeFullName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}* Extends: {{ parent|route|raw }}
 {% endif %}
@@ -50,7 +51,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {# signatures #}
 ```php
 {% for constant in constants %}
-{%- set isInherited = (constant.parent.name != node.name) %}
+{%- set isInherited = (constant.parent.FullyQualifiedStructuralElementName != nodeFullName) %}
 {%- if isInherited or constant.deprecated %}
 //{{ isInherited ? ' [Deprecated]' }}{{ constant.deprecated ? ' [Inherited] from ' ~ constant.parent.FullyQualifiedStructuralElementName }}
 {% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ utils.printValue(constant.value)|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
@@ -76,7 +77,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {% for property in properties %}
 Property **{{ property.name }}**
 
-{{ property.parent.name != node.name ? '* Inherited from ' ~ property.parent|route }}
+{{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? '* Inherited from ' ~ property.parent|route }}
 * Type: {{ property.types|route|join('|')|raw }}
 
 {% if property.deprecated %}::: warning Deprecated
