@@ -1,0 +1,7 @@
+{% macro printValue(value) %}
+{%- if isNumeric(value) or '::' in value or '[' in value or value in ['true', 'false', 'null'] %}
+{{- value }}
+{%- else %}
+{{- '"'~value~'"' }}
+{%- endif %}
+{%- endmacro %}
