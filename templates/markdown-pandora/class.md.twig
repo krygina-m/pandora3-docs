@@ -14,11 +14,11 @@
 {% endif %}
 
 `{{ nodeType }}`{{ node.abstract ? ' `abstract`'|raw }}<br>
-Full name: {{ nodeFullName }}<br>
+Full name: **{{ nodeFullName }}**<br>
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
-{% if parent %}Extends: {{ parent|route|raw }}<br>
+{% if parent %}Extends: **{{ parent|route|raw }}**<br>
 {% endif %}
-{% if node.interfaces|length %}Implements: {{ node.interfaces|route|join(', ')|raw }}<br>
+{% if node.interfaces|length %}Implements: **{{ node.interfaces|route|join('**,<br>**')|raw }}**<br>
 {% endif %}
 
 {% if node.deprecated %}::: warning Deprecated
@@ -72,8 +72,8 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {% for property in properties|sort_by('visibility')|reverse %}
 `property` **{{ property.name }}**
 
-{{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('Inherited from ' ~ property.parent|route ~ '<br>')|raw }}
-Type: {{ property.types|route|join('|')|raw }}
+{{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('Inherited from **' ~ property.parent|route ~ '**<br>')|raw }}
+Type: **{{ property.types|route|first|replace({"|": "&nbsp;| "})|raw }}**
 
 {% if property.deprecated %}::: warning Deprecated
 This means that this property will likely be removed in a future version
