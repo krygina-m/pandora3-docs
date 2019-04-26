@@ -13,7 +13,7 @@
 {% set nodeType = 'class' %}
 {% endif %}
 
-`[{{ nodeType|capitalize }}]`{% if node.abstract %} `[Abstract]`{% endif %}
+`{{ nodeType }}`{% if node.abstract %} `abstract`{% endif %}
 * Full name: {{ nodeFullName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}* Extends: {{ parent|route|raw }}
@@ -70,7 +70,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 **Properties:**
 
 {% for property in properties|sort_by('visibility')|reverse %}
-Property **{{ property.name }}**
+`property` **{{ property.name }}**
 
 {{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('* [Inherited] from ' ~ property.parent|route)|raw }}
 * Type: {{ property.types|route|join('|')|raw }}
