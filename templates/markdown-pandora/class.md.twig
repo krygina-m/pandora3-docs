@@ -52,7 +52,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {%- set isInherited = (constant.parent.FullyQualifiedStructuralElementName != nodeFullName) %}
 {%- if isInherited or constant.deprecated %}
 //{{ constant.deprecated ? ' [Deprecated]' }}{{ isInherited ? (' [Inherited] from ' ~ constant.parent.FullyQualifiedStructuralElementName)|raw }}
-{% endif %}{{ constant.visibility }} const {{ constant.name }} = {{ utils.printValue(constant.value)|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
+{% endif %}{{ constant.visibility ?: 'public' }} const {{ constant.name }} = {{ utils.printValue(constant.value)|raw }}{{ constant.summary ? ' // '~constant.summary|raw }}
 {% endfor %}
 ```
 
