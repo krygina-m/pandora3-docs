@@ -51,7 +51,7 @@ This means that this method will likely be removed in a future version
 {% if method.name != '__construct' and method.response.types and method.response.types|join != 'void' %}
 **Returns:**
 
-Type: {{ method.response.types|route|first|raw }}
+Type: **{{ method.response.types|route|first|replace({"|": "&nbsp;| "})|raw }}**
 
 {{ method.response.description|raw }}
 
