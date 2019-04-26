@@ -16,9 +16,11 @@
 `{{ nodeType }}`{{ node.abstract ? ' &emsp;&emsp; `abstract`'|raw }}
 
 Full name: {{ nodeFullName }}
+
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}Extends: {{ parent|route|raw }}
 {% endif %}
+
 {% if node.interfaces|length %}Implements: {{ node.interfaces|route|join(', ')|raw }}
 {% endif %}
 
