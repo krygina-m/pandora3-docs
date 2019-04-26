@@ -13,9 +13,8 @@
 {% set nodeType = 'class' %}
 {% endif %}
 
-* {{ nodeType|capitalize }}
-{% if node.abstract %}* Abstract
-{% endif %}* Full name: {{ nodeFullName }}
+`[{{ nodeType|capitalize }}]`{% if node.abstract %} `[Abstract]`{% endif %}
+* Full name: {{ nodeFullName }}
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}* Extends: {{ parent|route|raw }}
 {% endif %}
@@ -59,10 +58,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 
 ---
 {#
-#### {{ constant.name }}{{ constant.parent.name != node.name ? ' (inherited)' }}
-
 {{ constant.summary|raw }}
-
 {{ constant.description|raw }}
 #}
 {% endif %}{# node.constants #}
@@ -76,7 +72,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {% for property in properties|sort_by('visibility')|reverse %}
 Property **{{ property.name }}**
 
-{{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('* Inherited from ' ~ property.parent|route)|raw }}
+{{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('* [Inherited] from ' ~ property.parent|route)|raw }}
 * Type: {{ property.types|route|join('|')|raw }}
 
 {% if property.deprecated %}::: warning Deprecated
