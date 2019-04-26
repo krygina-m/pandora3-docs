@@ -100,7 +100,7 @@ This means that this property will likely be removed in a future version
 {% if methods|length %}
 **Methods:**
 
-{% for method in methods %}
+{% for method in methods|sort_desc('visibility') %}
 {% if method.name != '__construct' or method.arguments|length %}
 {% include 'method.md.twig' %}
 {% endif %}
