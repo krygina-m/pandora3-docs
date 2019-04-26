@@ -52,10 +52,10 @@ class App extends Application {
 При инициализации класс приложения создает контейнер зависимостей `$this->container`. Переопределив метод `dependencies` в классе приложения можно добавлять и переопределять зависимости.
 
 ```php
-	protected function dependencies(Container $container): void {
-		parent::dependencies($container);
-		$container->setShared(DatabaseConnectionInterface::class, EloquentConnection::class);
-	}
+protected function dependencies(Container $container): void {
+	parent::dependencies($container);
+	$container->setShared(DatabaseConnectionInterface::class, EloquentConnection::class);
+}
 ```
 
 ::: tip Примечание
@@ -162,11 +162,11 @@ class BookController extends Controller {
 Можно создать и другие макеты (например для печати), и применить один из них перед вызовом метода `render` в контроллере.
 
 ```php
-	protected function articlePrint() {
-		// ...
-		$this->setLayout('Print');
-		return $this->render('Article');
-	}
+protected function articlePrint() {
+	// ...
+	$this->setLayout('Print');
+	return $this->render('Article');
+}
 ```
 
 В результате получилось минимальное веб-приложение. Пора проверить его работоспособность в браузере!
