@@ -74,6 +74,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 `property` &emsp;&emsp; **{{ property.name }}**
 
 {{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('Inherited from ' ~ property.parent|route)|raw }}
+
 Type: {{ property.types|route|join('|')|raw }}
 
 {% if property.deprecated %}::: warning Deprecated
