@@ -73,7 +73,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {% if properties|length %}
 **Properties:**
 
-{% for property in properties|sort('visibility') %}
+{% for property in properties|sort_by('visibility')|reverse %}
 Property **{{ property.name }}**
 
 {{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('* Inherited from ' ~ property.parent|route)|raw }}
@@ -101,7 +101,7 @@ This means that this property will likely be removed in a future version
 {% if methods|length %}
 **Methods:**
 
-{% for method in methods|sort('visibility') %}
+{% for method in methods|sort_by('visibility')|reverse %}
 {% if method.name != '__construct' or method.arguments|length %}
 {% include 'method.md.twig' %}
 {% endif %}
