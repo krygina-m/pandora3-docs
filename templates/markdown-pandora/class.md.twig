@@ -13,12 +13,12 @@
 {% set nodeType = 'class' %}
 {% endif %}
 
-`{{ nodeType }}`{{ node.abstract ? ' &ensp; &ensp; `abstract`'|raw }} \
-Full name: {{ nodeFullName }} \
+`{{ nodeType }}`{{ node.abstract ? ' &ensp; &ensp; `abstract`'|raw }} 
+Full name: {{ nodeFullName }} 
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
-{% if parent %}Extends: {{ parent|route|raw }} \
+{% if parent %}Extends: {{ parent|route|raw }} 
 {% endif %}
-{% if node.interfaces|length %}Implements: {{ node.interfaces|route|join(', ')|raw }} \
+{% if node.interfaces|length %}Implements: {{ node.interfaces|route|join(', ')|raw }} 
 {% endif %}
 
 {% if node.deprecated %}::: warning Deprecated
@@ -72,7 +72,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 {% for property in properties|sort_by('visibility')|reverse %}
 `property` &ensp; &ensp; **{{ property.name }}**
 
-{{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('Inherited from ' ~ property.parent|route ~ " \\")|raw }}
+{{ property.parent.FullyQualifiedStructuralElementName != nodeFullName ? ('Inherited from ' ~ property.parent|route)|raw ~ ' ' }}
 Type: {{ property.types|route|join('|')|raw }}
 
 {% if property.deprecated %}::: warning Deprecated
