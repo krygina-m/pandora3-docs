@@ -13,8 +13,8 @@
 {% set nodeType = 'class' %}
 {% endif %}
 
-`{{ nodeType }}`{{ node.abstract ? ' &ensp; &ensp; `abstract`'|raw }}\
-Full name: {{ nodeFullName }}\
+`{{ nodeType }}`{{ node.abstract ? ' &ensp; &ensp; `abstract`'|raw }} \
+Full name: {{ nodeFullName }} \
 {% set parent = node.parent is iterable ? node.parent|first : node.parent %}
 {% if parent %}Extends: {{ parent|route|raw }} \
 {% endif %}
