@@ -49,7 +49,7 @@ This means that this {{ nodeType }} will likely be removed in a future version
 ```php
 {% for constant in constants %}
 {%- set isInherited = (constant.parent.FullyQualifiedStructuralElementName != nodeFullName) %}
-{% if loop.index > 0 %}
+{% if loop.index > 1 %}
 
 {% endif %}{% if isInherited or constant.deprecated %}
 //{{ constant.deprecated ? ' [Deprecated]' }}{{ isInherited ? (' [Inherited] from ' ~ constant.parent.FullyQualifiedStructuralElementName)|raw }}
