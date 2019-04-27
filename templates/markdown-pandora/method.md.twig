@@ -36,6 +36,17 @@ This means that this method will likely be removed in a future version
 
 {% endif %}{# method.arguments #}
 
+
+{% if method.name != '__construct' and method.response.types and method.response.types|join != 'void' %}
+**Returns:**
+
+Type: **{{ method.response.types|route|first|replace({"|": "&nbsp;| "})|raw }}**
+
+{{ method.response.description|raw }}
+
+
+{% endif %}{# method.response #}
+
 {% if method.tags.throws|length or method.tags.throw|length %}
 **Throws:**
 
@@ -48,14 +59,6 @@ This means that this method will likely be removed in a future version
 
 {% endif %}{# method.throw #}
 
-{% if method.name != '__construct' and method.response.types and method.response.types|join != 'void' %}
-**Returns:**
-
-Type: **{{ method.response.types|route|first|replace({"|": "&nbsp;| "})|raw }}**
-
-{{ method.response.description|raw }}
-
-{% endif %}{# method.response #}
 
 {% if method.tags.see|length or method.tags.link|length %}
 **See Also:**
