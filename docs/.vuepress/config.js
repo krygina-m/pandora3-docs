@@ -5,6 +5,7 @@ module.exports = {
         docsRepo: 'PandoraTeam/pandora3-docs',
         docsDir: 'docs',
         editLinks: true,
+        lastUpdated: true,
         
         nav: [
             {text: 'Быстрый старт',     link: '/getting-started.html'},
