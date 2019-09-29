@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <template>
-  <author>Petr Gostn</author>
+  <author>Petr Gostin</author>
   <email>nescafe238@gmail.com</email>
   <version>1.0.0</version>
-  <copyright>Petr Gostn 2019</copyright>
+  <copyright>Petr Gostin 2019</copyright>
   <description>PhpDocumentor markdown template for Pandora 3 framework.</description>
   <transformations>
     <transformation writer="twig" source="templates/markdown-pandora/index.md.twig" artifact="README.md" />
