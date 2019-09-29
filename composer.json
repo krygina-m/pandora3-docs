@@ -1,7 +1,7 @@
 {
     "minimum-stability": "dev",
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "dev-develop"
+        "phpdocumentor/phpdocumentor": "v3.0.0-alpha.4"
     },
     "autoload": {
         "psr-0": {
