@@ -12,24 +12,23 @@ install:
     - sed -i '36s/.*/public function __construct()/' pico/lib/PicoTwigExtension.php
     - sed -i '38s/.*//' pico/lib/PicoTwigExtension.php
     - composer install --no-interaction
-#    - composer require --dev phpdocumentor/phpdocumentor dev-master
 #    - composer require cvuorinen/phpdoc-markdown-public
 #    - sed -i '14s/.*//' vendor/cvuorinen/phpdoc-markdown-public/composer.json
 #    - composer require ravenflux/sort-functions:dev-master
 #    - composer require dpolac/twig-lambda
 #    - composer require picocms/pico
-    - npm install -g vuepress
+#    - npm install -g vuepress
 
 before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone --recurse-submodules https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
     - export APP_ENV=dev
-    # - export PHPDOC_ENV=dev
+    - export PHPDOC_ENV=dev
 
 script:
-    - vendor/bin/phpdoc -d src -t docs/api --title "API documentation" --visibility=public --visibility=protected --template="templates/markdown-pandora"
+    - vendor/bin/phpdoc -d src -t docs/api --title "API documentation" --template="templates/markdown-pandora" --visibility=public --visibility=protected
     # - php vendor/bin/phpdoc -d src -t docs/api --title "Pandora API documentation" --template="vendor/cvuorinen/phpdoc-markdown-public/data/templates/markdown-public"
-    - npm run docs:build
+    # - npm run docs:build
 
 cache:
     directories:
