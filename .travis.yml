@@ -24,6 +24,7 @@ before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone --recurse-submodules https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
     - export APP_ENV=dev
+    # - export PHPDOC_ENV=dev
 
 script:
     - vendor/bin/phpdoc -d src -t docs/api --title "API documentation" --visibility=public --visibility=protected --template="templates/markdown-pandora"
