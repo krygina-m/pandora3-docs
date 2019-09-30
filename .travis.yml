@@ -8,9 +8,9 @@ php:
 
 install:
 #    - phpenv global 7.2
-    - git clone https://github.com/picocms/Pico.git pico
-    - sed -i '36s/.*/public function __construct()/' pico/lib/PicoTwigExtension.php
-    - sed -i '38s/.*//' pico/lib/PicoTwigExtension.php
+#    - git clone https://github.com/picocms/Pico.git pico
+#    - sed -i '36s/.*/public function __construct()/' pico/lib/PicoTwigExtension.php
+#    - sed -i '38s/.*//' pico/lib/PicoTwigExtension.php
     - composer install --no-interaction
 #    - composer require cvuorinen/phpdoc-markdown-public
 #    - sed -i '14s/.*//' vendor/cvuorinen/phpdoc-markdown-public/composer.json
@@ -22,7 +22,7 @@ install:
 before_script:
     - git clone https://github.com/PandoraTeam/pandora3-Core.git src/Core
     - git clone --recurse-submodules https://github.com/PandoraTeam/pandora3-Libs.git src/Libs
-    - export APP_ENV=dev
+#    - export APP_ENV=dev
     - export PHPDOC_ENV=dev
 
 script:
