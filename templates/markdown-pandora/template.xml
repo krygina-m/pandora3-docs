@@ -6,11 +6,14 @@
   <copyright>Petr Gostin 2019</copyright>
   <description>PhpDocumentor markdown template for Pandora 3 framework.</description>
   <transformations>
-    <transformation writer="twig" source="templates/markdown-pandora/index.md.twig" artifact="README.md" />
+    <transformation writer="twig" source="templates/markdown-pandora/index.md.twig" artifact="README.md">
+      <parameter key="twig-debug">true</parameter>
+      <parameter key="twig-extension">TwigExtension\IsTypeExtension</parameter>
+    </transformation>
   </transformations>
   <parameters>
-    <parameter key="twig-debug">true</parameter>
-    <parameter key="twig-extension">TwigExtension\IsTypeExtension</parameter>
+    <!-- <parameter key="twig-debug">true</parameter>
+    <parameter key="twig-extension">TwigExtension\IsTypeExtension</parameter> -->
     <!--<parameter key="twig-extension">Cvuorinen\PhpdocMarkdownPublic\Extension\TwigMarkdownAnchorLink</parameter>-->
     <!--<parameter key="twig-extension">Cvuorinen\PhpdocMarkdownPublic\Extension\TwigClassPublicMethods</parameter>-->
     <!--<parameter key="twig-extension">RavenFlux\Twig\SortExtension</parameter>-->
