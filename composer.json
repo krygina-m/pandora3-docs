@@ -2,7 +2,7 @@
     "minimum-stability": "dev",
     "prefer-stable": false,
     "require-dev": {
-        "phpdocumentor/phpdocumentor": "dev-master"
+        "phpdocumentor/phpdocumentor": "v3.0.0-alpha4"
     },
     "autoload": {
         "psr-0": {
