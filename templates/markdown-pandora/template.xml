@@ -15,6 +15,6 @@
     <!--<parameter key="twig-extension">RavenFlux\Twig\SortExtension</parameter>-->
     <!--<parameter key="twig-extension">DPolac\TwigLambda\LambdaExtension</parameter>-->
     <!--<parameter key="twig-extension">PicoTwigExtension</parameter>-->
-    <parameter key="twig-extension">TwigExtension\IsTypeExtension</parameter>
+    <parameter key="twig-extension">\TwigExtension\IsTypeExtension</parameter>
   </parameters>
 </template>
