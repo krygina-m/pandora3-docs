@@ -3,7 +3,7 @@ module.exports = {
 	title: 'Pandora 3',
 	description: 'Lightweight PHP framework',
 	head: [
-		['link', { rel: 'icon', href: '/logo.png' }]
+		['link', { rel: 'icon', href: '/icon-logo.png' }]
 	],
 	themeConfig: {
 		repo: 'PandoraTeam/pandora3-Core',
