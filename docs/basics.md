@@ -173,8 +173,53 @@ protected function articlePrint() {
 
 ## Модели
 
-Модели предоставляют объектный способ работы с базой данных, реализуя подход ORM. На данный момент доступна работа с БД с помощью [Eloquent](https://laravel.com/docs/5.8/eloquent) (библиотека входящая в состав фреймворка [Laravel](https://laravel.com/)). В будущем будут добавлены адаптер для Doctrine (из Symfony) и проработанное нативное решение.
+Модели предоставляют объектный способ работы с базой данных, реализуя подход ORM. На данный момент доступна работа с БД с помощью [Eloquent](https://laravel.com/docs/5.8/eloquent) (библиотека входящая в состав фреймворка [Laravel](https://laravel.com/)). Каждая таблица имеет соответствующий класс-модель, который используется для работы с этой таблицей. Модели позволяют запрашивать данные из таблиц, а также вставлять в них новые записи.
+В будущем будут добавлены адаптер для Doctrine (из Symfony) и проработанное нативное решение.
 
+### Определение моделей
+
+Для начала создается модель Eloquent. Модели обычно располагаются в директории app. Все модели Eloquent наследуют класс Illuminate\Database\Eloquent\Model.
+
+### Условия для моделей Eloquent
+
+Рассмотрим на примере модели Employee, которая используется для получения и хранения информации из таблицы базы данных о сотрудниках:
+```php
+<?php
+namespace Auth\Models;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+class Employee extends BaseModel {
+       //
+}
+```
+### Имена таблиц
+
+Можно явно указать имя таблицы.
+```php
+<?php
+namespace Auth\Models;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+class Employee extends BaseModel {
+       protected $table = 'employee';
+}
+```
+Если это имя не указано явно, то в соответствии с принятым соглашением будет использовано имя класса в нижнем регистре (snake case) и во множественном числе.
+
+### Первичные ключи
+
+Eloquent предполагает, что каждая таблица имеет первичный ключ с именем id. Можно определить свойство $primaryKey для указания другого имени.
+Предполагается, что первичный ключ является инкрементным числом, и автоматически приведёт его к типу int. Для использования неинкрементного или нечислового первичного ключа необходимо задать открытому свойству $incrementing значение false.
+```php
+<?php
+namespace Auth\Models;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+class Employee extends BaseModel {
+       protected $table = 'employee';
+       protected $primaryKey = 'userId';
+}
+```
 ## Виджеты
 
 <!-- В виде основного класса отнаследованного от **\Core\Widget**, дополнительные классы (если требуются) и набор шаблонов. -->
