@@ -185,9 +185,11 @@ protected function articlePrint() {
 Рассмотрим на примере модели Employee, которая используется для получения и хранения информации из таблицы базы данных о сотрудниках:
 ```php
 <?php
-namespace Auth\Models;
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Employee extends BaseModel {
        //
 }
@@ -197,14 +199,16 @@ class Employee extends BaseModel {
 Можно явно указать имя таблицы.
 ```php
 <?php
-namespace Auth\Models;
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Employee extends BaseModel {
        protected $table = 'employee';
 }
 ```
-Если это имя не указано явно, то в соответствии с принятым соглашением будет использовано имя класса в нижнем регистре (snake case) и во множественном числе.
+Если это имя не указано явно, то в соответствии с принятым соглашением будет использовано имя класса в нижнем регистре (snake_case) и во множественном числе.
 
 ### Первичные ключи
 
@@ -212,9 +216,11 @@ Eloquent предполагает, что каждая таблица имеет
 Предполагается, что первичный ключ является инкрементным числом, и автоматически приведёт его к типу int. Для использования неинкрементного или нечислового первичного ключа необходимо задать открытому свойству $incrementing значение false.
 ```php
 <?php
-namespace Auth\Models;
+namespace App\Models;
+
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+
 class Employee extends BaseModel {
        protected $table = 'employee';
        protected $primaryKey = 'userId';
