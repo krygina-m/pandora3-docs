@@ -226,6 +226,48 @@ class Employee extends BaseModel {
        protected $primaryKey = 'userId';
 }
 ```
+
+### Отметки времени
+
+По умолчанию в моделях Eloquent предполагается, что в таблице есть поля меток времени (timestamp) — created_at и updated_at Чтобы они автоматически обрабатывались в Eloquent нужно установить свойство $timestamps класса модели в false. В противном случае в таблице будут присутствовать поля меток времени (timestamp) — created_at и updated_at. Пример установки $timestamps = true можно увидеть в модели User.php:
+
+```php
+<?php
+namespace Auth\Models\Edu;
+
+use Auth\Models\BaseModel;
+use Pandora3\Libs\Application\Application;
+
+class EduUser extends BaseModel {
+	protected $table = 'user';
+	public $timestamps = true;
+}
+```
+
+### Соединение с БД
+
+По умолчанию модели Eloquent будут использовать основное соединение с БД, настроенное для приложения. Если есть необходимость указать другое соединение для модели, то надо использовать свойство $connection. В качестве примера обратимся к модели EduUser.php:
+
+```php
+<?php
+namespace Auth\Models\Edu;
+
+use Auth\Models\Employee;
+
+class EmployeeImportService {
+	protected $connection = 'edu';
+}
+```
+
+### Работа с моделями
+
+После создания модели и связанной с ней таблицы, можно начать работать с данными из базы. Каждая модель Eloquent представляет собой мощный конструктор запросов, позволяющий удобно выполнять запросы к связанной таблице. Для примера опять обратимся к модели Employee.php:
+
+```php
+<?php
+}
+```
+
 ## Виджеты
 
 <!-- В виде основного класса отнаследованного от **\Core\Widget**, дополнительные классы (если требуются) и набор шаблонов. -->
