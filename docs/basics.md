@@ -444,6 +444,58 @@ class Menu extends Widget {
 
 ### Пример с передачей параметров.
 
+```php
+<?php
+namespace App\Widgets\Menu;
+
+ // В качестве примера указаны только основные модели
+use App\Models\Directions\Direction;
+use App\Models\Examination\ExaminationMark;
+use App\Models\FinanceHelp\FinanceHelp;
+use App\Models\Stipend\Stipend;
+use App\Models\StudentGroups\StudentGroup;
+use App\Models\Students\Student;
+use App\Models\StudyPlans\StudyPlan;
+use App\Models\Users\User;
+use Pandora3\Libs\Widget\Widget;
+
+class Menu extends Widget {
+	public function __construct(string $uri, array $context = []) {
+		$this->uri = $uri;
+		parent::__construct($context);
+	}
+	
+		protected function getItems() {
+		$items = [
+			[
+				'uri' => '/users',
+				'visible' => function(User $user) {
+					return $user->can('view', User::class);
+				},
+				'title' => 'Пользователи',              'icon' => '<i class="mdi mdi-shield-account"></i>'
+			],
+			[
+				'uri' => '/directions',
+				'visible' => function(User $user) {
+					return $user->can('view', Direction::class) && !$user->isOperatorEntrance();
+				},
+				'title' => 'Направления',               'icon' => '<i class="mdi mdi-folder-text"></i>'
+			],
+			[
+				'uri' => '/study-plans',
+				'visible' => function(User $user) {
+					return $user->can('view', StudyPlan::class) && !$user->isOperatorEntrance();
+				},
+				'title' => 'Учебные планы',             'icon' => '<i class="mdi mdi-school"></i>'
+			],
+			// Аналогично задаются другие пункты меню: Успеваемость, Группы, Студенты, Успеваемость, Стипендии, Материальная помощь
+		];
+
+		return $items;
+	}
+
+```
+
 ## Библиотеки
 
 
