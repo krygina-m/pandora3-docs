@@ -385,11 +385,63 @@ use Auth\Models\User;
 class UserController extends Controller {
         $user = App\Models\Users\User::find($id);
         $user->delete();
+}
 ```
 
 ## Виджеты
 
 <!-- В виде основного класса отнаследованного от **\Core\Widget**, дополнительные классы (если требуются) и набор шаблонов. -->
+
+Установка пакета с помощью Composer.
+
+```
+composer require klisl/laravel-widgets  
+```
+
+По умолчанию пакет пытается найти виджет в пространстве имен App \ Widgets. Хотя использование пространства имен по умолчанию очень удобно, в некоторых случаях может потребоваться больше гибкости. Например, большое количество виджетов имеет смысл сгруппировать в папки с пространством имен.
+
+Нет проблем, есть несколько способов вызвать эти виджеты:
+
+Рассмотрим на примере создания виджета, отвечающего за меню.
+
+```php
+<?php
+namespace App\Widgets\Menu;
+
+use App\Models\Directions\Direction;
+use App\Models\Examination\ExaminationMark;
+use App\Models\FinanceHelp\FinanceHelp;
+use App\Models\Stipend\Stipend;
+use App\Models\StudentGroups\StudentGroup;
+use App\Models\Students\Student;
+use App\Models\StudyPlans\StudyPlan;
+use App\Models\Users\User;
+use Pandora3\Libs\Widget\Widget;
+
+class Menu extends Widget {
+
+}
+```
+
+### Использование
+
+В файле `config\widgets.php` находится массив, в котором, в качестве ключей нужно указать названия для создаваемых виджетов, а в качестве значений названия классов виджетов (с пространством имен). Например:
+ 
+```php
+'test' => 'App\Widgets\TestWidget'
+```
+
+Классы для своих виджетов нужно создавать в папке `app\Widgets`. Для размещения шаблонов виджетов предназначена папка `app\Widgets\views`.
+
+Класс виджета должен иметь соответствующее пространство имен: `namespace App\Widgets`. Так же класс виджета должен включать интерфейс ContractWidget и реализовывать его метод execute(). 
+Если виджет должен, для своей работы, получить какие-то данные из контроллера и тд. (передаются в шаблоне), то необходимо предусмотреть метод конструктор для класса виджета с получением аргумента в виде массива параметров. 
+
+### Передача переменных в виджет
+
+#### Через конфигурационный массив
+
+#### Напрямую через метод run()
+
 
 ## Библиотеки
 
