@@ -292,10 +292,11 @@ class EmployeeImportService {
 <?php
 use Auth\Models\Users;
 
-$users = Auth\Models\Users::all();
+protected function printUser() {
+        $users = Auth\Models\Users::all();
 
-foreach ($users as $user) {
-    echo $user->login;
+        foreach ($users as $user) {
+              echo $user->login;
 }
 ```
 
@@ -322,6 +323,7 @@ $user = Auth\Models\Users::where('id', 1)->first();
 
 ```php
 <?php
+
 $user = Auth\Models\Users::find([1, 2, 3]);
 }
 ```
@@ -332,6 +334,10 @@ $user = Auth\Models\Users::find([1, 2, 3]);
 
 ```php
 <?php
+namespace App\Plugins\Users\Controllers;
+
+use Auth\Models\Users;
+
 protected function update() {
 	$id = (int) $this->request->get('id');
 	$user = User::findOrFail($id);
@@ -348,7 +354,7 @@ protected function update() {
 <?php
 namespace App\Plugins\Students\Controllers;
 
-use App\Models\Users\User;
+use App\Models\Students\Student;
 
 class StudentController extends Controller {
 	/**
@@ -366,9 +372,21 @@ class StudentController extends Controller {
 ```
 
 При вызове метода save запись будет вставлена в таблицу. Отметки времени `created_at` и `updated_at` будут автоматически установлены при вызове save, поэтому их не нужно задавать вручную.
+
 ### Удаление моделей
 
 Для удаления модели нужно вызвать метод delete на ее экземпляр.
+
+```php
+<?php
+namespace Auth\Plugins\Users\Controllers;
+
+use Auth\Models\User;
+
+class UserController extends Controller {
+        $user = App\Models\Users\User::find($id);
+        $user->delete();
+```
 
 ## Виджеты
 
