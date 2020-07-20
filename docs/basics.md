@@ -270,11 +270,11 @@ class User extends Model {
 
 ```php
 <?php
-namespace Auth\Models\Edu;
+namespace Auth\Services\Employee;
 
 use Auth\Models\Employee;
 
-class EmployeeImportService {
+class EmployeeImportService extends Model {
        /**
         * Название соединения для модели.
         *
