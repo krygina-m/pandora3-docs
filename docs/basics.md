@@ -188,6 +188,7 @@ protected function articlePrint() {
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -203,6 +204,7 @@ class Employee extends Model {
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -226,6 +228,7 @@ Eloquent предполагает, что каждая таблица имеет
 <?php
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
@@ -249,6 +252,7 @@ class Employee extends Model {
 <?php
 namespace App\Models\Users;
 
+use Illuminate\Database\Eloquent\Model;
 use Pandora3\Libs\Application\Application;
 
 class User extends Model {
@@ -271,6 +275,7 @@ class User extends Model {
 <?php
 namespace Auth\Services\Employee;
 
+use Illuminate\Database\Eloquent\Model;
 use App\Models\Employee;
 
 class EmployeeImportService extends Model {
@@ -292,7 +297,7 @@ class EmployeeImportService extends Model {
 use App\Models\Users;
 
 protected function printUser() {
-        $users = Auth\Models\Users::all();
+        $users = App\Models\Users::all();
 
         foreach ($users as $user) {
               echo $user->login;
@@ -311,10 +316,10 @@ protected function printUser() {
 <?php
 
 // Получение модели по её первичному ключу
-$user = Auth\Models\Users::find(1);
+$user = App\Models\Users::find(1);
 
 // Получение первой модели, удовлетворяющей условиям
-$user = Auth\Models\Users::where('id', 1)->first();
+$user = App\Models\Users::where('id', 1)->first();
 }
 ```
 
