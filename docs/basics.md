@@ -387,7 +387,7 @@ namespace App\Plugins\Users\Controllers;
 use App\Models\User;
 
 class UserController extends Controller {
-        $user = App\Models\Users\User::find($id);
+        $user = User::find($id);
         $user->delete();
 }
 ```
