@@ -249,7 +249,6 @@ class Employee extends Model {
 <?php
 namespace App\Models\Users;
 
-use Auth\Models\BaseModel;
 use Pandora3\Libs\Application\Application;
 
 class User extends Model {
@@ -272,7 +271,7 @@ class User extends Model {
 <?php
 namespace Auth\Services\Employee;
 
-use Auth\Models\Employee;
+use App\Models\Employee;
 
 class EmployeeImportService extends Model {
        /**
@@ -290,7 +289,7 @@ class EmployeeImportService extends Model {
 
 ```php
 <?php
-use Auth\Models\Users;
+use App\Models\Users;
 
 protected function printUser() {
         $users = Auth\Models\Users::all();
@@ -324,7 +323,7 @@ $user = Auth\Models\Users::where('id', 1)->first();
 ```php
 <?php
 
-$user = Auth\Models\Users::find([1, 2, 3]);
+$user = App\Models\Users::find([1, 2, 3]);
 }
 ```
 
@@ -336,7 +335,7 @@ $user = Auth\Models\Users::find([1, 2, 3]);
 <?php
 namespace App\Plugins\Users\Controllers;
 
-use Auth\Models\Users;
+use App\Models\Users;
 
 protected function update() {
 	$id = (int) $this->request->get('id');
@@ -378,9 +377,9 @@ class StudentController extends Controller {
 
 ```php
 <?php
-namespace Auth\Plugins\Users\Controllers;
+namespace App\Plugins\Users\Controllers;
 
-use Auth\Models\User;
+use App\Models\User;
 
 class UserController extends Controller {
         $user = App\Models\Users\User::find($id);
