@@ -396,7 +396,9 @@ class UserController extends Controller {
 
 <!-- В виде основного класса отнаследованного от **\Core\Widget**, дополнительные классы (если требуются) и набор шаблонов. -->
 
-Установка пакета с помощью Composer.
+### Установка
+
+Установка пакета с помощью Composer (запустить composer).
 
 ```
 composer require klisl/laravel-widgets  
