@@ -164,9 +164,7 @@ class BookController extends Controller {
 ```php
 protected function articlePrint() {
 	// ...
-	$this->setLayout('Print');Работая над созданием своего сайта, очень часто приходится разбивать вывод информации страницы на определенные блоки. Например меню, сайдбар, слайдер, форму подписки и тд. При этом, лучшим решением будет сделать такие блоки максимально автономными - со своим классом, шаблоном и тд. То есть сделать данные блоки отдельными виджетами, которые затем можно легко подключать в любом нужном шаблоне.
-Это помогает разгрузить контроллер от дополнительного кода, сгруппировать файлы виджетов в одном месте, легко поддерживать их код и использовать одинаковый, простой синтаксис вызова нужного блока. Конечно, для этого, функционал виджетов должен строиться по одному общему образцу.
-В связи с этим я предлагаю свое решение, не содержащее ничего лишнего, легко расширяемое и позволяющее с легкостью создавать и использовать виджеты.
+	$this->setLayout('Print');
 
 	return $this->render('Article');
 }
@@ -179,11 +177,9 @@ protected function articlePrint() {
 Модели предоставляют объектный способ работы с базой данных, реализуя подход ORM. На данный момент доступна работа с БД с помощью [Eloquent](https://laravel.com/docs/5.8/eloquent) (библиотека входящая в состав фреймворка [Laravel](https://laravel.com/)). Каждая таблица имеет соответствующий класс-модель, который используется для работы с этой таблицей. Модели позволяют запрашивать данные из таблиц, а также вставлять в них новые записи.
 В будущем будут добавлены адаптер для Doctrine (из Symfony) и проработанное нативное решение.
 
-### Определение моделей
-
-Для начала создается модель Eloquent. Модели обычно располагаются в директории `app`. Но возможно поместить их в любое место, в котором работает автозагрузчик в соответствии с файлом `composer.json`. Все модели Eloquent наследуют класс `Illuminate\Database\Eloquent\Model`.
-
 ### Создание моделей Eloquent
+
+Для начала создадим модель Eloquent. Модели обычно располагаются в директории `app`. Но возможно поместить их в любое место, в котором работает автозагрузчик. Все модели Eloquent наследуют класс `Illuminate\Database\Eloquent\Model`.
 
 Рассмотрим на примере модели `Employee.php`, которая используется для получения и хранения информации из таблицы базы данных о сотрудниках:
 
@@ -212,12 +208,12 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends Model {
-       /**
-        * Таблица, связанная с моделью.
-        *
-        * @var string
-        */
-       protected $table = 'employee';
+ 	/**
+	 * Таблица, связанная с моделью.
+	 *
+	 * @var string
+	 */
+	 protected $table = 'employee';
 }
 ```
 Если это имя не указано явно, то в соответствии с принятым соглашением будет использовано имя класса в нижнем регистре (snake_case) и во множественном числе.
@@ -236,14 +232,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Employee extends Model {
-       /**
-        * Таблица, связанная с моделью.
-        *
-        * @var string
-	* @var int
-        */
-       protected $table = 'employee';
-       protected $primaryKey = 'userId';
+	 /**
+	 * Таблица, связанная с моделью.
+	 *
+	 * @var string
+	 * @var int
+	 /
+	 protected $table = 'employee';
+	 protected $primaryKey = 'userId';
 }
 ```
 
@@ -259,14 +255,17 @@ use Illuminate\Database\Eloquent\Model;
 use Pandora3\Libs\Application\Application;
 
 class User extends Model {
-        /**
-         * Таблица, связанная с моделью.
-         *
-         * @var string
+	/**
+	 * Таблица, связанная с моделью. 
+	 *
+	 * @var string
+	 protected $table = 'user';
+	 
 	 * @var bool
-         */
-	protected $table = 'user';
-	public $timestamps = true;
+	 public $timestamps = true;
+	 */
+
+	
 }
 ```
 
@@ -282,12 +281,12 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Employee;
 
 class EmployeeImportService extends Model {
-       /**
-        * Название соединения для модели.
-        *
-        * @var string
-        */
-       protected $connection = 'edu';
+	/**
+	 * Название соединения для модели.
+	 *
+	 * @var string
+	 */
+	 protected $connection = 'edu';
 }
 ```
 
@@ -300,10 +299,10 @@ class EmployeeImportService extends Model {
 use App\Models\Users;
 
 protected function printUser() {
-        $users = App\Models\Users::all();
+	 $users = App\Models\Users::all();
 
-        foreach ($users as $user) {
-              echo $user->login;
+	 foreach ($users as $user) {
+		 echo $user->login;
 }
 ```
 
@@ -346,9 +345,9 @@ namespace App\Plugins\Users\Controllers;
 use App\Models\Users;
 
 protected function update() {
-	$id = (int) $this->request->get('id');
-	$user = User::findOrFail($id);
-	// Если пользователь найден, то далее следует обновление данных
+	 $id = (int) $this->request->get('id');
+	 $user = User::findOrFail($id);
+	 // Если пользователь найден, то далее следует обновление данных
 }
 ```
 
@@ -364,13 +363,13 @@ use App\Models\Students\Student;
 
 class StudentController extends Controller {
 	/**
-     	* Создание нового экземпляра студента
-   	*
-    	* @param  Request  $request
-    	* @return Response
-    	*/
+	 * Создание нового экземпляра студента
+	 *
+	 * @param  Request  $request
+	 * @return Response
+	 */
 	
-	protected function add(): {
+	 protected function add(): {
 		\DB::beginTransaction();
 		$student = new Student( array_replace($form->studentValues, ['userId' => $user->id]) );
 		$student->saveOrFail();
@@ -390,8 +389,8 @@ namespace App\Plugins\Students\Controllers;
 use App\Models\Student;
 
 class StudentController extends Controller {
-        $student = Student::find($id);
-        $student->delete();
+	$student = Student::find($id);
+	$student->delete();
 }
 ```
 В итоге будет удалена информация о студенте с заданным `id`.
@@ -487,21 +486,21 @@ class Menu extends Widget {
 				'visible' => function(User $user) {
 					return $user->can('view', User::class);
 				},
-				'title' => 'Пользователи',              'icon' => '<i class="mdi mdi-shield-account"></i>'
+				'title' => 'Пользователи', 'icon' => '<i class="mdi mdi-shield-account"></i>'
 			],
 			[
 				'uri' => '/directions',
 				'visible' => function(User $user) {
 					return $user->can('view', Direction::class) && !$user->isOperatorEntrance();
 				},
-				'title' => 'Направления',               'icon' => '<i class="mdi mdi-folder-text"></i>'
+				'title' => 'Направления', 'icon' => '<i class="mdi mdi-folder-text"></i>'
 			],
 			[
 				'uri' => '/study-plans',
 				'visible' => function(User $user) {
 					return $user->can('view', StudyPlan::class) && !$user->isOperatorEntrance();
 				},
-				'title' => 'Учебные планы',             'icon' => '<i class="mdi mdi-school"></i>'
+				'title' => 'Учебные планы', 'icon' => '<i class="mdi mdi-school"></i>'
 			],
 			// Аналогично задаются другие пункты меню: Успеваемость, Группы, Студенты, Успеваемость, Стипендии, Материальная помощь
 		];
